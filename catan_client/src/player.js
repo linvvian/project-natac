@@ -6,7 +6,7 @@ class Player {
   }
 
   render(){
-    return `<h1>${this.name}</h1>`
+    return `<h2>${this.name}</h2><p>Settlements: </p><p>Roads: </p>`
   }
 }
 
