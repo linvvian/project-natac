@@ -1,0 +1,2 @@
+class RoadsController < ApplicationController
+end

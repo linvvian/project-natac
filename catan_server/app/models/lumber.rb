@@ -1,0 +1,2 @@
+class Lumber < ApplicationRecord
+end

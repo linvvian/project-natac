@@ -1,0 +1,2 @@
+class Grain < ApplicationRecord
+end

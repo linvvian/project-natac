@@ -1,0 +1,2 @@
+class Wool < ApplicationRecord
+end
