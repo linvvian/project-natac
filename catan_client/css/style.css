@@ -10,3 +10,22 @@ canvas {
   border-width: thick;
   background-color: black;
 }
+
+.players {
+  position: fixed;
+}
+
+#turn-count {
+  text-align: center;
+  height: 100px;
+}
+
+#player1-corner {
+  left: 0px
+  top: 100px
+}
+
+#player2-corner {
+  right: 40px;
+  top: 100px;
+}
