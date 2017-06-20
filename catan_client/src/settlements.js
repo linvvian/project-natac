@@ -14,6 +14,7 @@ elem.addEventListener('click', function(event) {
         if (y > element.top && y < element.top + element.height
             && x > element.left && x < element.left + element.width) {
             console.log('id', element.id, 'left', element.left, 'top', element.top)
+            return element
         }
     });
 

@@ -53,7 +53,3 @@ class Player {
 
 
 }
-
-const me = new Player('me')
-
-document.getElementById('player2-corner').innerHTML = me.render()

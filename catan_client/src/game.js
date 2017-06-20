@@ -1,14 +1,15 @@
 class Game {
   constructor() {
-    this.turnCount = 0
+    this.turnCount = 1
     this.players = []
     this.gameboard = new Gameboard()
-    this.player1NameBox = document.querySelector('#player1-name')
-    this.player2NameBox = document.querySelector('#player2-name')
-    this.player1Submit = document.querySelector('#player1-submit')
-    this.player2Submit = document.querySelector('#player2-submit')
-    this.buttons = document.querySelector('#button-container')
+
+    this.buttons = document.querySelector('.button-container')
     this.buttons.addEventListener('click', this.startTurn.bind(this))
+    this.board = document.querySelector('.gameboard-container')
+    this.board.addEventListener('click', this.boardEvents.bind(this))
+
+    this.renderTurnCount()
 
     // this.placeSettlementBtn = //settlement button
     // this.placeSettlementBtn.addEventListener()//adds on click event that triggers placeSettlement function
@@ -29,8 +30,29 @@ class Game {
 
   }
 
-  addPlayer(){
-    thisplayers.push(new Player(name) )
+  addPlayer(i){
+    let name = document.querySelector(`#player${i}-name`).value
+    this.players.push( new Player(name) )
+    console.log(this.players)
+  }
+
+  boardEvents(){
+    event.preventDefault()
+    let target = event.target.id
+    console.log(target)
+    switch (target) {
+      case 'hexmap':
+
+        break;
+      case 'player1-submit':
+        this.addPlayer(1)
+        break;
+      case 'player2-submit':
+        this.addPlayer(2)
+        break;
+      default:
+
+    }
   }
 
   currentPlayer(){
@@ -44,14 +66,25 @@ class Game {
   startTurn(){
     let player = this.currentPlayer()
     let turn = new Turn(player)
-    let target = event.target
-    
-    // if button
-    //   do turn action
+    let target = event.target.id
+    switch (target) {
+      case 'buySettlementBtn':
+        turn.buySettlement()
+        break;
+      case 'buyRoadBtn':
+        turn.buyRoad()
+        break;
+      case 'endTurn':
+        this.endTurn()
+        break;
+      default:
+        break;
+    }
   }
 
   endTurn() {
     this.turnCount ++
+    this.renderTurnCount()
     // check if player won
     // game over
     // else continue
@@ -59,7 +92,8 @@ class Game {
   }
 
   renderTurnCount(){
-
+    const div = document.querySelector('.turnCount-container')
+    $(div).append(`<h2>Turn: ${this.turnCount}</h2>`)
   }
 }
 
