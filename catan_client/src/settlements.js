@@ -35,7 +35,6 @@ const coordsSettle =
         { x:120, y:550, tiles:[17] }, { x:185, y:585, tiles:[17] }, { x:250, y:550, tiles:[17,18] }, { x:315, y:585, tiles:[18] }, { x:380, y:550,tiles:[18,19] }, { x:445, y:585, tiles:[19]}, { x:510, y:550, tiles:[19] }
 ]
 
-
 coordsSettle.forEach(function(e, i){
   settlements.push({
       color: '#273776',
