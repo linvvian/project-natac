@@ -34,10 +34,9 @@ const tiles =
 
     ]
 
-
 tiles.forEach(function(e, i){
   tilesArr.push({
-      colour: '#c9c6ca',
+      color: '#c9c6ca',
       width: 90,
       height: 90,
       top: e.y,
@@ -48,10 +47,6 @@ tiles.forEach(function(e, i){
 
 // Render elements.
 tilesArr.forEach(function(element) {
-    context.fillStyle = element.colour;
+    context.fillStyle = element.color;
     context.fillRect(element.left, element.top, element.width, element.height);
 })
-
-
-
-

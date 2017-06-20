@@ -8,8 +8,15 @@
   </head>
   <body>
     <div id='turn-count'></div>
+    <div id='button-container'>
+      <button id='buySettlementBtn'>Buy Settlement</button>
+      <button id='buyRoadBtn'>Buy Road</button>
+      <button id='endTurnBtn'>End Turn</button>
+    </div>
 
-    <div id='player1-corner' class='players'></div>
+    <div id='player1-corner' class='players'>
+      <form><input type="text" id="player1-name"><input type="submit"></form>
+    </div>
     <div id='player2-corner' class='players'></div>
     <div id='player3-corner' class='players'></div>
 
@@ -18,8 +25,13 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="src/hexagon.js"></script>
-  <script type="text/javascript" src="src/settlements.js"></script>
   <script type="text/javascript" src="src/tiles.js"></script>
+  <script type="text/javascript" src="src/settlements.js"></script>
   <script type="text/javascript" src="src/roads.js"></script>
+  <script type="text/javascript" src="src/gameboard.js"></script>
   <script type="text/javascript" src="src/player.js"></script>
+  <script type="text/javascript" src="src/turn.js"></script>
+  <script type="text/javascript" src="src/game.js"></script>
+
+
 </html>

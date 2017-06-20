@@ -1,17 +1,7 @@
 class Turn {
   constructor(player) {
     this.player = player
-    this.turncount = 0
-    this.placeSettlementBtn = //settlement button
-    this.placeSettlementBtn.addEventListener()//adds on click event that triggers placeSettlement function
-    this.placeRoadBtn = //road button
-    this.placeRoadBtn.addEventListener()//adds on click event that triggers placeRoad function
-    this.endTurnBtn = //end turn
-    this.endTurnBtn.addEventListener()//add on click event that triggers the endTurn function
-    this.buyRoadBtn = //buy Road Btn
-    this.buyRoadBtn.addEventListener()// lets player buy road if they have the necessary amount of resources -- then decrements the appropriate resources and amounts
-    this.buySettlementBtn = //buy settlement Btn
-    this.buySettlementBtn.addEventListener()// lets player buy settlements if they have the necessary amount of resources -- then decrements the appropriate resources and amounts
+    this.turnEvents = []
   }
 
 
@@ -19,7 +9,9 @@ class Turn {
     if (this.player.settlements > 0) {
       //places settlement on an open settlement location
     }
-    this.player.settlements -= 1
+    this.player.points += 1
+    this.player.settlement.push(settlement)
+    // this.player.settlements -= 1
   }
 
   placeRoad() {
@@ -50,21 +42,5 @@ class Turn {
       alert("You don't have enough resources to by a settlement!")
     }
   }
-
-  endTurn() {
-    //ends player turn and goes to next player
-      //if (player.id < players.length) {
-      // newId = player.id + 1
-      // player = Player.find(newId)
-      // new Turn(player)
-      // } else {
-      //   newId = players[0].id
-      //   player = Player.find(newId)
-      //   new Turn(player)
-      // }
-  }
-
-
-
 
 }

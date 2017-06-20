@@ -38,7 +38,7 @@ const coordsSettle =
 
 coordsSettle.forEach(function(e, i){
   settlements.push({
-      colour: '#273776',
+      color: '#273776',
       width: 20,
       height: 20,
       top: e.y,
@@ -49,10 +49,6 @@ coordsSettle.forEach(function(e, i){
 
 // Render elements.
 settlements.forEach(function(element) {
-    context.fillStyle = element.colour;
+    context.fillStyle = element.color;
     context.fillRect(element.left, element.top, element.width, element.height);
 })
-
-
-
-

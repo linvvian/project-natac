@@ -10,6 +10,7 @@ class Player {
       wools: 0
     }
     this.name = name || `Player`
+    this.points = 0
   }
 
   //return the number of settlements player has
@@ -53,13 +54,6 @@ class Player {
 
 }
 
-<<<<<<< HEAD
-
-
-// const me = new Player('me')
-// document.getElementById('player1-corner').innerHTML = me.render()
-=======
 const me = new Player('me')
-document.getElementById('player1-corner').innerHTML = me.render()
+
 document.getElementById('player2-corner').innerHTML = me.render()
->>>>>>> 9ec0a1750b1e4e25fe633a4bc693f188ca246fe3

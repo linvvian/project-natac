@@ -20,6 +20,11 @@ canvas {
   height: 100px;
 }
 
+#button-container {
+  text-align: center;
+  height: 100px;
+}
+
 #player1-corner {
   left: 0px
   top: 100px
