@@ -30,7 +30,7 @@ class Game {
   }
 
   addPlayer(){
-    thisplayers.push(new Player(name) )
+    this.players.push(new Player(name) )
   }
 
   currentPlayer(){
@@ -45,7 +45,7 @@ class Game {
     let player = this.currentPlayer()
     let turn = new Turn(player)
     let target = event.target
-    
+
     // if button
     //   do turn action
   }
