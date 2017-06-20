@@ -34,9 +34,9 @@ const tiles =
 
     ]
 
+var diceArr = [2,2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12]
+var resourceArr = ['brick', 'brick', 'brick', 'brick', 'lumber', 'lumber', 'lumber', 'lumber', 'ore', 'ore', 'ore', 'wool', 'wool', 'wool', 'wool', 'grain', 'grain', 'grain', 'grain']
 tiles.forEach(function(e, i){
-  var diceArr = [2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12]
-  var resourceArr = ['brick', 'lumber', 'ore', 'wool', 'grain']
   tilesArr.push({
       id: i+1,
       resource: resourceArr.splice(Math.floor(Math.random() * resourceArr.length), 1).join(""),
