@@ -26,75 +26,77 @@
     }
 
     function drawBoard(canvasContext, width, height) {
-        let i, j;
-            for(j = 1; j < 4; ++j) {
-                drawHexagon(
-                    ctx,
-                    0 * hexRectangleWidth + ((j % 2) * hexRadius),
-                    j * (sideLength + hexHeight),
-                    false
-                );
-            }
-            for(j = 0; j < height+1; ++j) {
-                drawHexagon(
-                    ctx,
-                    1 * hexRectangleWidth + ((j % 2) * hexRadius),
-                    j * (sideLength + hexHeight),
-                    false
-                );
-            }
-            for(j = 0; j < height+1; ++j) {
-                drawHexagon(
-                    ctx,
-                    2 * hexRectangleWidth + ((j % 2) * hexRadius),
-                    j * (sideLength + hexHeight),
-                    false
-                );
-            }
-            for(j = 0; j < height+1; ++j) {
-                drawHexagon(
-                    ctx,
-                    3 * hexRectangleWidth + ((j % 2) * hexRadius),
-                    j * (sideLength + hexHeight),
-                    false
-                );
-            }
+      let i, j;
+      // first column of board
+        for(j = 1; j < 4; ++j) {
             drawHexagon(
                 ctx,
-                4 * hexRectangleWidth + ((2 % 2) * hexRadius),
-                2 * (sideLength + hexHeight),
+                0 * hexRectangleWidth + ((j % 2) * hexRadius),
+                j * (sideLength + hexHeight),
                 false
             );
-
-        // for(i = 0; i < width; ++i) {
-        //     for(j = 0; j < height; ++j) {
-        //         drawHexagon(
-        //             ctx,
-        //             i * hexRectangleWidth + ((j % 2) * hexRadius),
-        //             j * (sideLength + hexHeight),
-        //             false
-        //         );
-        //     }
-        // }
+        }
+        // second column of board
+        for(j = 0; j < height+1; ++j) {
+            drawHexagon(
+                ctx,
+                1 * hexRectangleWidth + ((j % 2) * hexRadius),
+                j * (sideLength + hexHeight),
+                false
+            );
+        }
+        // third column of board
+        for(j = 0; j < height+1; ++j) {
+            drawHexagon(
+                ctx,
+                2 * hexRectangleWidth + ((j % 2) * hexRadius),
+                j * (sideLength + hexHeight),
+                false
+            );
+        }
+        // fourth column of board
+        for(j = 0; j < height+1; ++j) {
+            drawHexagon(
+                ctx,
+                3 * hexRectangleWidth + ((j % 2) * hexRadius),
+                j * (sideLength + hexHeight),
+                false
+            );
+        }
+        // last column of board
+        drawHexagon(
+            ctx,
+            4 * hexRectangleWidth + ((2 % 2) * hexRadius),
+            2 * (sideLength + hexHeight),
+            false
+        );
     }
 
     function drawHexagon(canvasContext, x, y, fill) {
-        var fill = fill || false;
+      var fill = fill || false;
 
-        canvasContext.beginPath();
-        canvasContext.moveTo(x + hexRadius, y);
-        canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight);
-        canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
-        canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
-        canvasContext.lineTo(x, y + sideLength + hexHeight);
-        canvasContext.lineTo(x, y + hexHeight);
-        canvasContext.closePath();
+      let newDiv = document.createElement('div')
+      newDiv.id = Math.floor(x)
+      newDiv.className = 'tiles'
+      newDiv.style.left = Math.floor(x) + 'px'
+      newDiv.style.top = Math.floor(y) + 'px'
 
-        if(fill) {
-            canvasContext.fill();
-        } else {
-            canvasContext.stroke();
-        }
+      canvasContext.beginPath();
+      canvasContext.moveTo(x + hexRadius, y);
+      canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight);
+      canvasContext.lineTo(x + hexRectangleWidth, y + hexHeight + sideLength);
+      canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
+      canvasContext.lineTo(x, y + sideLength + hexHeight);
+      canvasContext.lineTo(x, y + hexHeight);
+      canvasContext.closePath();
+
+      document.getElementsByTagName('canvas')[0].appendChild(newDiv);
+
+      if(fill) {
+          canvasContext.fill();
+      } else {
+          canvasContext.stroke();
+      }
     }
 
 })();
