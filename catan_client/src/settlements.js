@@ -19,7 +19,8 @@ elem.addEventListener('click', function(event) {
 
 }, false);
 
-const coordsSettle = [
+const coordsSettle =
+    [
         //Row one
         {x:30, y:120},{x:0, y:185},{x:30, y:250},{x:0, y:315},{x:30, y:380},{x:0, y:445}, {x:30, y:510},
         //Row two
@@ -32,7 +33,7 @@ const coordsSettle = [
         {x:435, y:55},{x:480, y:120},{x:435, y:185},{x:480, y:250},{x:435, y:315},{x:480, y:380},{x:435, y:445}, {x:480, y:510},{x:435, y:575},
         //sixth row
         {x:550, y:120},{x:595, y:185},{x:550, y:250},{x:595, y:315},{x:550, y:380},{x:595, y:445}, {x:550, y:510}
-]
+    ]
 
 coordsSettle.forEach(function(e, i){
   settlements.push({
