@@ -7,23 +7,27 @@
 
   </head>
   <body>
-    <div class='turnCount-container'></div>
-    <div class='button-container'>
-      <button id='buySettlementBtn'>Buy Settlement</button>
-      <button id='buyRoadBtn'>Buy Road</button>
-      <button id='endTurnBtn'>End Turn</button>
-    </div>
-
-    <div class='gameboard-container'>
-      <div id='player1-corner' class='players'>
-        <form><input type="text" id="player1-name"><input type="submit" id="player1-submit"></form>
+    <div class="game">
+      <div class='turnCount-container'></div>
+      <div class='roll'></div>
+      <div class='button-container'>
+        <button id='rollDice'>Roll Dice</button>
+        <button id='buySettlementBtn'>Buy Settlement</button>
+        <button id='buyRoadBtn'>Buy Road</button>
+        <button id='endTurnBtn'>End Turn</button>
       </div>
-      <div id='player2-corner' class='players'>
-        <form><input type="text" id="player2-name"><input type="submit" id="player2-submit"></form>
-      </div>
-      <div id='player3-corner' class='players'></div>
 
-      <canvas id="hexmap" width="660" height="624"></canvas>
+      <div class='gameboard-container'>
+        <div id='player1-corner' class='players'>
+          <form><input type="text" id="player1-name"><input type="submit" id="player1-submit"></form>
+        </div>
+        <div id='player2-corner' class='players'>
+          <form><input type="text" id="player2-name"><input type="submit" id="player2-submit"></form>
+        </div>
+        <div id='player3-corner' class='players'></div>
+
+        <canvas id="hexmap" width="660" height="624"></canvas>
+      </div>
     </div>
 
   </body>

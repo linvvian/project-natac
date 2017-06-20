@@ -11,6 +11,8 @@ class Player {
     }
     this.name = name || `Player`
     this.points = 0
+    this.settlementCount = 2
+    this.roadCount = 2
   }
 
   //return the number of settlements player has
