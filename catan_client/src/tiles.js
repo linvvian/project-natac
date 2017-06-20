@@ -5,19 +5,19 @@ var elem = document.getElementById('hexmap'),
     tilesArr = [];
 
 // Add event listener for `click` events.
-// elem.addEventListener('click', function(event) {
-//     var x = event.pageX - elemLeft,
-//         y = event.pageY - elemTop;
-//
-//    // Collision detection between clicked offset and element.
-//     tilesArr.forEach(function(element) {
-//         if (y > element.top && y < element.top + element.height
-//             && x > element.left && x < element.left + element.width) {
-//             console.log('tiles_id', element.id, 'left', element.left, 'top', element.top)
-//         }
-//     });
-//
-// }, false);
+elem.addEventListener('click', function(event) {
+    var x = event.pageX - elemLeft,
+        y = event.pageY - elemTop;
+
+   // Collision detection between clicked offset and element.
+    tilesArr.forEach(function(element) {
+        if (y > element.top && y < element.top + element.height
+            && x > element.left && x < element.left + element.width) {
+            console.log(element)
+        }
+    });
+
+}, false);
 
 const tiles =
     [
@@ -35,13 +35,17 @@ const tiles =
     ]
 
 tiles.forEach(function(e, i){
+  var diceArr = [2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12]
+  var resourceArr = ['brick', 'lumber', 'ore', 'wool', 'grain']
   tilesArr.push({
+      id: i+1,
+      resource: resourceArr.splice(Math.floor(Math.random() * resourceArr.length), 1).join(""),
+      value: diceArr.splice(Math.floor(Math.random() * diceArr.length), 1).join(""),
       color: '#c9c6ca',
       width: 90,
       height: 90,
       top: e.y,
-      left: e.x,
-      id: i+1
+      left: e.x
   })
 })
 
