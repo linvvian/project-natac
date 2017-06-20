@@ -5,19 +5,19 @@ var elem = document.getElementById('hexmap'),
     tilesArr = [];
 
 // Add event listener for `click` events.
-elem.addEventListener('click', function(event) {
-    var x = event.pageX - elemLeft,
-        y = event.pageY - elemTop;
-
-   // Collision detection between clicked offset and element.
-    tilesArr.forEach(function(element) {
-        if (y > element.top && y < element.top + element.height
-            && x > element.left && x < element.left + element.width) {
-            console.log('tiles_id', element.id, 'left', element.left, 'top', element.top)
-        }
-    });
-
-}, false);
+// elem.addEventListener('click', function(event) {
+//     var x = event.pageX - elemLeft,
+//         y = event.pageY - elemTop;
+//
+//    // Collision detection between clicked offset and element.
+//     tilesArr.forEach(function(element) {
+//         if (y > element.top && y < element.top + element.height
+//             && x > element.left && x < element.left + element.width) {
+//             console.log('tiles_id', element.id, 'left', element.left, 'top', element.top)
+//         }
+//     });
+//
+// }, false);
 
 const tiles =
     [

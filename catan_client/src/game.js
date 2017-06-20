@@ -3,6 +3,7 @@ class Game {
     this.turnCount = 1
     this.players = []
     this.gameboard = new Gameboard()
+    this.settlements = this.gameboard.settlements
 
     this.buttons = document.querySelector('.button-container')
     this.buttons.addEventListener('click', this.startTurn.bind(this))
@@ -11,16 +12,6 @@ class Game {
 
     this.renderTurnCount()
 
-    // this.placeSettlementBtn = //settlement button
-    // this.placeSettlementBtn.addEventListener()//adds on click event that triggers placeSettlement function
-    // this.placeRoadBtn = //road button
-    // this.placeRoadBtn.addEventListener()//adds on click event that triggers placeRoad function
-    // this.endTurnBtn = //end turn
-    // this.endTurnBtn.addEventListener()//add on click event that triggers the endTurn function
-    // this.buyRoadBtn = document.querySelector('#buyRoadBtn')
-    // this.buyRoadBtn.addEventListener()// lets player buy road if they have the necessary amount of resources -- then decrements the appropriate resources and amounts
-    // this.buySettlementBtn = document.querySelector('#buySettlementBtn')
-    // this.buySettlementBtn.addEventListener()// lets player buy settlements if they have the necessary amount of resources -- then decrements the appropriate resources and amounts
 
     // this.settlements = [new Settlements()]
     // this.roads = [new Roads()]
@@ -36,13 +27,32 @@ class Game {
     console.log(this.players)
   }
 
+  getSettlement(event, settlements){
+    let picked
+    console.log(settlements)
+    let elem = document.getElementById('hexmap'),
+        elemLeft = elem.offsetLeft,
+        elemTop = elem.offsetTop
+    let x = event.pageX - elemLeft,
+        y = event.pageY - elemTop;
+
+    settlements.forEach(function(element) {
+      if (y > element.top && y < element.top + element.height
+      && x > element.left && x < element.left + element.width) {
+        console.log('id', element.id, 'left', element.left, 'top', element.top)
+        picked = element
+      }})
+    return picked
+  }
+
   boardEvents(){
     event.preventDefault()
     let target = event.target.id
     console.log(target)
     switch (target) {
       case 'hexmap':
-
+        let picked = this.getSettlement(event, this.settlements)
+        console.log(picked)
         break;
       case 'player1-submit':
         this.addPlayer(1)
@@ -74,7 +84,7 @@ class Game {
       case 'buyRoadBtn':
         turn.buyRoad()
         break;
-      case 'endTurn':
+      case 'endTurnBtn':
         this.endTurn()
         break;
       default:
