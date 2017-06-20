@@ -26,8 +26,7 @@
     }
 
     function drawBoard(canvasContext, width, height) {
-        var i,
-            j;
+        let i, j;
             for(j = 1; j < 4; ++j) {
                 drawHexagon(
                     ctx,
