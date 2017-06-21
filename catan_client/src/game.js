@@ -5,6 +5,7 @@ class Game {
     this.gameboard = new Gameboard()
     this.openSettlements = this.gameboard.settlements
     this.openRoads = this.gameboard.roads
+    this.tiles = this.gameboard.tiles 
     this.turn
 
     this.diceRoll = document.querySelector('.roll')

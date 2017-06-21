@@ -27,10 +27,8 @@ ActiveRecord::Schema.define(version: 20170621161654) do
   create_table "roads", force: :cascade do |t|
     t.integer "top_coordinate"
     t.integer "left_coordinate"
-    t.bigint "settlements_id"
     t.bigint "player_id"
     t.index ["player_id"], name: "index_roads_on_player_id"
-    t.index ["settlements_id"], name: "index_roads_on_settlements_id"
   end
 
   create_table "roads_settlements", force: :cascade do |t|
@@ -43,12 +41,10 @@ ActiveRecord::Schema.define(version: 20170621161654) do
   create_table "settlements", force: :cascade do |t|
     t.integer "x_coordinate"
     t.integer "y_coordinate"
-    t.bigint "tiles_id"
     t.bigint "player_id"
     t.bigint "roads_id"
     t.index ["player_id"], name: "index_settlements_on_player_id"
     t.index ["roads_id"], name: "index_settlements_on_roads_id"
-    t.index ["tiles_id"], name: "index_settlements_on_tiles_id"
   end
 
   create_table "settlements_tiles", force: :cascade do |t|
@@ -61,17 +57,13 @@ ActiveRecord::Schema.define(version: 20170621161654) do
   create_table "tiles", force: :cascade do |t|
     t.integer "top"
     t.integer "left"
-    t.integer "value"
-    t.string "resource"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "roads", "players"
-  add_foreign_key "roads", "settlements", column: "settlements_id"
   add_foreign_key "roads_settlements", "roads"
   add_foreign_key "roads_settlements", "settlements"
   add_foreign_key "settlements", "players"
   add_foreign_key "settlements", "roads", column: "roads_id"
-  add_foreign_key "settlements", "tiles", column: "tiles_id"
 end

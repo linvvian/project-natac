@@ -1,6 +1,6 @@
 class Api::V1::TilesController < ApplicationController
   def index
-    render json: Tile.all.to_json
+    render json: Tile.all
   end
 
   def show

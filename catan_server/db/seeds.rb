@@ -20,11 +20,8 @@ tiles =
         { x:150, y:480 },{ x:280, y:480 },{ x:410, y:480 },
     ]
 
-  diceArr = [2,2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12].shuffle
-  resourceArr = ['brick', 'brick', 'brick', 'brick', 'lumber', 'lumber', 'lumber', 'lumber', 'ore', 'ore', 'ore', 'wool', 'wool', 'wool', 'wool', 'grain', 'grain', 'grain', 'grain'].shuffle
-
 tiles.each do |t|
-  Tile.create(left: t[:x], top: t[:y], value: diceArr.shift, resource: resourceArr.shift)
+  Tile.create(left: t[:x], top: t[:y])
 end
 
 coordsSettle =

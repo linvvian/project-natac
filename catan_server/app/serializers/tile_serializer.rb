@@ -1,3 +1,3 @@
 class TileSerializer < ActiveModel::Serializer
-  attributes :id, :top, :left, :value, :resource
+  attributes :id, :top, :left
 end
