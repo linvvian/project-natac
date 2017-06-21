@@ -13,6 +13,7 @@ class Game {
     this.renderTurnCount()
   }
 
+
   rollDice(){
     let roll = Math.floor(Math.random()*6)+1 + Math.floor(Math.random()*6)+1
     document.querySelector('.roll').innerHTML = `${roll}`
@@ -56,6 +57,15 @@ class Game {
     }
     console.log(this.players)
   }
+
+    addResources(i){
+        let resources = document.querySelector(`#player${i}-resources`)
+        let player = this.players[i - 1]
+        resources.innerHTML = player.render()
+
+        console.log('shit')
+
+    }
 
   getClick(event, settlements, roads){
     let picked
@@ -118,6 +128,8 @@ class Game {
     console.log(chosen)
   }
 
+
+
   currentPlayer(){
     if (this.turnCount % 2 === 1){
       return this.players[0]
@@ -146,6 +158,12 @@ class Game {
       case 'player2-submit':
         this.addPlayer(2)
         break;
+        case 'player1-resources':
+            this.addResources(1)
+            break;
+        case 'player2-resources':
+            this.addResources(2)
+            break;
       case 'rollDice':
         this.rollDice()
         break;
