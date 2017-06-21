@@ -1,2 +1,0 @@
-class RoadsController < ApplicationController
-end

@@ -11,21 +11,6 @@ class Tile {
       elemTop = elem.offsetTop,
       context = elem.getContext('2d')
 
-    // Add event listener for `click` events.
-    // elem.addEventListener('click', function(event) {
-    //     var x = event.pageX - elemLeft,
-    //         y = event.pageY - elemTop;
-    //
-    //     Collision detection between clicked offset and element.
-    //     this.tiles.forEach(function(element) {
-    //         if (y > element.top && y < element.top + element.height
-    //             && x > element.left && x < element.left + element.width) {
-    //             console.log(element)
-    //         }
-    //     });
-    //
-    // }, false);
-
     const tiles =
         [
             //Row one

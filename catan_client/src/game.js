@@ -1,7 +1,7 @@
 class Game {
   constructor() {
     this.turnCount = 1
-    this.players = []
+    this.players = [new Player(), new Player()]
     this.gameboard = new Gameboard()
     this.openSettlements = this.gameboard.settlements
     this.openRoads = this.gameboard.roads
@@ -80,8 +80,6 @@ class Game {
     let name = document.querySelector(`#player${i}-name`).value
     if( this.players[i-1] ) {
       this.players[i-1].name = name
-    } else {
-      this.players[i-1] = new Player(name)
     }
     console.log(this.players)
   }
