@@ -21,6 +21,7 @@ class Gameboard {
         boardWidth = 4,
         boardHeight = 4;
 
+
     hexHeight = Math.sin(hexagonAngle) * sideLength;
     hexRadius = Math.cos(hexagonAngle) * sideLength;
     hexRectangleHeight = sideLength + 2 * hexHeight;
@@ -87,7 +88,7 @@ class Gameboard {
       canvasContext.lineTo(x + hexRadius, y + hexRectangleHeight);
       canvasContext.lineTo(x, y + sideLength + hexHeight);
       canvasContext.lineTo(x, y + hexHeight);
-      canvasContext.closePath();
+        canvasContext.closePath();
 
       document.getElementsByTagName('canvas')[0].appendChild(newDiv);
 

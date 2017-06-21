@@ -24,7 +24,8 @@ class Road {
       context.lineTo(element.left + (element.width/2), element.top + element.height)
     }
     context.strokeStyle = '#5AEBAD'
-    context.lineWidth = 5
+
+      context.lineWidth = 5
     context.stroke()
   }
 
@@ -108,10 +109,10 @@ class Road {
     }, this)
 
     // Render elements.
-    this.roads.forEach(function(element) {
-        context.strokeStyle = element.color;
-        context.rect(element.left, element.top, element.width, element.height);
-        context.stroke()
-    })
+    // this.roads.forEach(function(element) {
+    //     context.strokeStyle = element.color;
+    //     context.rect(element.left, element.top, element.width, element.height);
+    //     context.stroke()
+    // })
   }
 }
