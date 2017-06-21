@@ -59,8 +59,8 @@ class Game {
         var removeCount = (resourceCount / 2)
         for (var i = 0; i < removeCount; i++) {
           player.resources[i] -= 1
-          alert("ROBBER!! YOU LOST HALF OF YOUR RESOURCES x x")
         }
+        alert("ROBBER!! YOU LOST HALF OF YOUR RESOURCES x x")
       } else {
         alert("ROBBER!!")
       }
