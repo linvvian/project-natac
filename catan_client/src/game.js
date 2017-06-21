@@ -29,11 +29,14 @@ class Game {
     if (roll === 7) {
       this.robber()
     } else {
-      var tile = this.findTileResourceAfterRoll.call(this, roll)
+      var tilesArr = this.findTileResourceAfterRoll.call(this, roll)
       this.players.forEach(function(player) {
         player.settlements.forEach(function(settlement) {
-          if (settlement.tiles.includes(tile[1])) {
-            player.resources[tile[0]] += 1
+          for (let i = 0; i < tilesArr.length; i++) {
+            let tile = tilesArr[i]
+            if (settlement.tiles.includes(tile[1])) {
+              player.resources[tile[0]] += 1
+            }
           }
         })
         console.log(this.turn, player.resources)
@@ -44,13 +47,13 @@ class Game {
 
   findTileResourceAfterRoll(roll){
     var value = roll.toString()
-    var newArr
+    var newArr = []
     this.gameboard.tiles.forEach((tile) => {
       if (tile.value === value) {
-        newArr = [tile.resource, tile]
+        newArr.push([tile.resource, tile])
       }
     })
-  return newArr
+    return newArr
   }
 
   robber() {
