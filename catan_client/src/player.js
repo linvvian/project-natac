@@ -51,5 +51,4 @@ class Player {
     return `<h2>${this.name}</h2><p>Settlements: </p><p>Roads: </p><p>Resources: </p>`
   }
 
-
 }

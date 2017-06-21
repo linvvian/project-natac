@@ -2,7 +2,7 @@ class Game {
   constructor() {
     this.turnCount = 1
     this.players = []
-    this.gameboard = new Gameboard()
+      this.gameboard = new Gameboard()
     this.settlements = this.gameboard.settlements
 
     this.buttons = document.querySelector('.button-container')
@@ -17,6 +17,7 @@ class Game {
     // this.roads = [new Roads()]
   }
 
+
   rollDice(){
 
   }
@@ -26,6 +27,15 @@ class Game {
     this.players.push( new Player(name) )
     console.log(this.players)
   }
+
+    addResources(i){
+        let resources = document.querySelector(`#player${i}-resources`)
+        let player = this.players[i - 1]
+        resources.innerHTML = player.render()
+
+        console.log('shit')
+
+    }
 
   getSettlement(event, settlements){
     let picked
@@ -60,10 +70,18 @@ class Game {
       case 'player2-submit':
         this.addPlayer(2)
         break;
+        case 'player1-resources':
+            this.addResources(1)
+            break;
+        case 'player2-resources':
+            this.addResources(2)
+            break;
       default:
 
     }
   }
+
+
 
   currentPlayer(){
     if (this.turnCount % 2 === 1){
