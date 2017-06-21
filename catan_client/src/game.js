@@ -5,7 +5,7 @@ class Game {
     this.gameboard = new Gameboard()
     this.openSettlements = this.gameboard.settlements
     this.openRoads = this.gameboard.roads
-    this.tiles = this.gameboard.tiles 
+    this.tiles = this.gameboard.tiles
     this.turn
       this.player1Div = document.querySelector('#player1-corner')
       this.player2Div = document.querySelector('#player2-corner')
@@ -91,14 +91,15 @@ class Game {
     console.log(this.players)
   }
 
-    addResources(i){
-        let resources = document.querySelector(`#player${i}-resources`)
-        let player = this.players[i - 1]
-        resources.innerHTML = player.render()
-
-        console.log('shit')
-
+  addResources(i){
+    let resources = document.querySelector(`.player${i}-info`)
+    let player = this.players[i - 1]
+    if (resources.innerHTML === '') {
+      resources.innerHTML = player.render()
+    } else {
+      resources.innerHTML = ''
     }
+  }
 
   getClick(event, settlements, roads){
     let picked
@@ -123,7 +124,7 @@ class Game {
         if (y > element.top && y < element.top + element.height
         && x > element.left && x < element.left + element.width) {
           picked = element
-        }})
+        }} )
     }
 
     return picked
@@ -160,8 +161,6 @@ class Game {
     }
     console.log(chosen)
   }
-
-
 
   currentPlayer(){
     if (this.turnCount % 2 === 1){

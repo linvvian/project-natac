@@ -38,19 +38,7 @@ class Road {
 
     let roads = this.roads
 
-      elem.addEventListener('click', (event) => {
-          var x = event.pageX - elemLeft,
-              y = event.pageY - elemTop;
 
-          // Collision detection between clicked offset and element.
-          roads.forEach(function(element) {
-              if (y > element.top && y < element.top + element.height
-                  && x > element.left && x < element.left + element.width) {
-                  this.renderRoad(element)
-              }
-          }, this);
-
-      }, false);
 
     const coordsHorRoad =
         [
@@ -109,11 +97,5 @@ class Road {
       })
     }, this)
 
-    // Render elements.
-    // this.roads.forEach(function(element) {
-    //     context.strokeStyle = element.color;
-    //     context.rect(element.left, element.top, element.width, element.height);
-    //     context.stroke()
-    // })
   }
 }
