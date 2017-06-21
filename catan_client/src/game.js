@@ -7,6 +7,8 @@ class Game {
     this.openRoads = this.gameboard.roads
     this.turn
 
+    this.diceRoll = document.querySelector('.roll')
+
     this.game = document.querySelector('.game')
     this.game.addEventListener('click', this.eventsCheck.bind(this))
 
@@ -15,7 +17,9 @@ class Game {
 
 
   rollDice(){
-    let roll = Math.floor(Math.random()*6)+1 + Math.floor(Math.random()*6)+1
+    let rollOne = Math.floor(Math.random()*6)+1
+    let rollTwo =  Math.floor(Math.random()*6)+1
+    let roll = (rollOne + rollTwo)
     document.querySelector('.roll').innerHTML = `${roll}`
     this.turn.roll = roll
     if (roll === 7) {
@@ -31,7 +35,9 @@ class Game {
         console.log(this.turn, player.resources)
       }, this)
     }
+    this.renderDice(rollOne, rollTwo)
   }
+
 
   findTileResourceAfterRoll(roll){
     var value = roll.toString()
@@ -58,6 +64,15 @@ class Game {
       } else {
         alert("ROBBER!!")
       }
+    })
+  }
+
+  renderDice(one, two) {
+    let diceRollsArr = [one, two]
+    let diceHTML = []
+    diceRollsArr.forEach(roll => {
+      diceHTML.push(`<img src="src/img/${roll}.png" height="50" width="50"></img> `)
+      this.diceRoll.innerHTML = diceHTML.join("")
     })
   }
 
