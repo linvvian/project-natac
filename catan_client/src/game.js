@@ -23,8 +23,29 @@ class Game {
     let roll = Math.floor(Math.random()*6)+1 + Math.floor(Math.random()*6)+1
     document.querySelector('.roll').innerHTML = `${roll}`
     this.turn.roll = roll
-    console.log(this.turn)
+    tile = this.findTileResourceAfterRoll(roll)
+    console.log(tile)
+    this.players.forEach(function(player) {
+      player.settlements.forEach(function(settlement) {
+        if (settlement.tiles.includes(tile[1])) {
+          player.resources[tile[0]] += 1
+        }
+      })
+    })
+    console.log(this.turn, player.resources)
   }
+
+  findTileResourceAfterRoll(roll){
+    this.gameboard.settlements.forEach(function(settlement){
+      settlement.tiles.forEach(function(tile) {
+        console.log(tile) //this is currently undefined
+        if (tile.value === `${roll}`) {
+          return [tile.resource, tile]
+        }
+      })
+    })
+  }
+
 
   addPlayer(i){
     let name = document.querySelector(`#player${i}-name`).value
