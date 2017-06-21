@@ -17,12 +17,12 @@ class Player {
 
   //return the number of settlements player has
   countSettlements(){
-    return this.settlements.count
+    return this.settlements.length
   }
 
   //return the number of roads player has
   countRoads(){
-    return this.roads.count
+    return this.roads.length
   }
 
   //adds settlement to player
@@ -44,13 +44,13 @@ class Player {
   renderResources(){
     let rsc = []
     for(let key in this.resources){
-      rsc.push(`${key}: ${this.resources[key]} `)
+      rsc.push(`${key}: ${this.resources[key]}<br> `)
     }
     return rsc.map(e => e).join('')
   }
 
   render(){
-    return `<h2>${this.name}</h2><p>Settlements: ${this.settlements}</p><p>Roads: ${this.roads}</p><p>Resources: ${this.resources}</p><p>Points: ${this.points}</p><p>Settlemts at your disposal: ${this.settlementCount}</p><p>Roads at your disposal: ${this.roadCount}</p>`
+    return `<h2>${this.name}</h2><p>Settlements: ${this.countSettlements()}</p><p>Roads: ${this.countRoads()}</p><p>Resources:<br> ${this.renderResources()}</p><p>Points: ${this.points}</p><p>Settlements to Place: ${this.settlementCount}</p><p>Roads to Place: ${this.roadCount}</p>`
   }
 
 }
