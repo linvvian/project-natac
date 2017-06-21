@@ -13,10 +13,15 @@ canvas {
 
 .players {
   position: fixed;
-  top: 150px;
+  top: 200px;
 }
 
 .turnCount-container {
+  text-align: center;
+  height: 50px;
+}
+
+.roll {
   text-align: center;
   height: 50px;
 }

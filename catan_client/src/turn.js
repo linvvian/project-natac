@@ -2,31 +2,36 @@ class Turn {
   constructor(player) {
     this.player = player
     this.turnEvents = []
+    this.roll
   }
 
-
-  placeSettlement(){
-    if (this.player.countSettlements() > 0) {
-      //places settlement on an open settlement location
+  placeSettlement(settlement){
+    if (this.player.settlementCount > 0 || this.player.countSettlements() === 0 ) {
+      this.player.points += 1
+      this.player.settlements.push(settlement)
+      this.player.settlementCount -= 1
+      console.log('placed')
+      return true
+    } else {
+      return false
     }
-    this.player.points += 1
-    //this.gameboard.placeSettlement()
-    this.player.settlements.push(settlement)
-    // this.player.settlements -= 1
   }
 
-  placeRoad() {
-    if (this.player.countRoads() > 0) {
-      //places road on an open road location
+  placeRoad(road) {
+    if (this.player.roadCount > 0 || this.player.countRoads() === 0 ) {
+      this.player.roadCount -= 1
+      this.player.roads.push(road)
+      return true
+    } else {
+      return false
     }
-    this.player.roads.push(road)
   }
 
   buyRoad() {
     if (this.player.resources.bricks > 0 && this.player.resources.lumbers > 0) {
-      this.player.addRoad(new Road())
       this.player.resources.bricks -= 1
       this.player.resources.lumbers -= 1
+      this.player.roadCount += 1
     } else {
       alert("You don't have enough resources to by a road!")
     }
@@ -34,11 +39,11 @@ class Turn {
 
   buySettlement() {
     if (this.player.resources.bricks > 0 && this.player.resources.lumbers > 0 && this.player.resources.wools > 0 && this.player.resources.grains > 0) {
-      this.player.addSettlement(new Settlement())
       this.player.resources.bricks -= 1
       this.player.resources.lumbers -= 1
       this.player.resources.wools -= 1
       this.player.resources.grains -= 1
+      this.player.settlementCount += 1
     } else {
       alert("You don't have enough resources to by a settlement!")
     }

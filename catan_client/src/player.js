@@ -3,14 +3,16 @@ class Player {
     this.settlements = []
     this.roads = []
     this.resources = {
-      bricks: 0,
-      grains: 0,
-      lumbers: 0,
-      ores: 0,
-      wools: 0
+      brick: 0,
+      grain: 0,
+      lumber: 0,
+      ore: 0,
+      wool: 0
     }
     this.name = name || `Player`
     this.points = 0
+    this.settlementCount = 2
+    this.roadCount = 2
   }
 
   //return the number of settlements player has
