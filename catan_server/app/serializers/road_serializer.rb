@@ -1,4 +1,4 @@
 class RoadSerializer < ActiveModel::Serializer
-  attributes :id, :quantity
-  has_one :player
+  attributes :id, :top_coordinate, :left_coordinate
+  has_many :settlements
 end
