@@ -50,7 +50,7 @@ class Player {
   }
 
   render(){
-    return `<h2>${this.name}</h2><p>Settlements: </p><p>Roads: </p><p>Resources: </p>`
+    return `<h2>${this.name}</h2><p>Settlements: ${this.settlements}</p><p>Roads: ${this.roads}</p><p>Resources: ${this.resources}</p><p>Points: ${this.points}</p><p>Settlemts at your disposal: ${this.settlementCount}</p><p>Roads at your disposal: ${this.roadCount}</p>`
   }
 
 }

@@ -1,7 +1,7 @@
 class Game {
   constructor() {
     this.turnCount = 1
-    this.players = []
+    this.players = [new Player(), new Player()]
     this.gameboard = new Gameboard()
     this.openSettlements = this.gameboard.settlements
     this.openRoads = this.gameboard.roads
@@ -51,18 +51,22 @@ class Game {
   }
 
   robber() {
+    alert("Oh, no the Robber!")
     this.players.forEach((player) => {
       var resources = player.resources
       var resourceValues = Object.values(resources)
+      var resourceKeys = Object.keys(resources)
       var resourceCount = resourceValues.reduce((acc, value) => acc + value)
       if (resourceCount > 7) {
-        var removeCount = (resourceCount / 2)
-        for (var i = 0; i < removeCount; i++) {
-          player.resources[i] -= 1
-          alert("ROBBER!! YOU LOST HALF OF YOUR RESOURCES x x")
+        var removeCount = parseInt(resourceCount / 2)
+        while (removeCount > 0) {
+          var resource = resourceKeys[Math.floor(Math.random()*resourceKeys.length)]
+          if (player.resources[resource] > 0) {
+            player.resources[resource] -= 1
+            removeCount -= 1
+          }
         }
-      } else {
-        alert("ROBBER!!")
+        alert(`The robber stole half of ${player.name}'s resources`)
       }
     })
   }
@@ -80,8 +84,6 @@ class Game {
     let name = document.querySelector(`#player${i}-name`).value
     if( this.players[i-1] ) {
       this.players[i-1].name = name
-    } else {
-      this.players[i-1] = new Player(name)
     }
     console.log(this.players)
   }
