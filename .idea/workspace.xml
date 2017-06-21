@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e2d04b3-b25a-4b7f-a01a-15b93a344d1d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/catan_client/src/game.js" afterPath="$PROJECT_DIR$/catan_client/src/game.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,7 +23,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="260">
               <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-              <folding />
+              <folding>
+                <marker date="1498080666000" expanded="true" signature="1093:1109" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -30,7 +33,7 @@
       <file leaf-file-name="tiles.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/catan_client/src/tiles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="212">
               <caret line="50" column="9" lean-forward="false" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
               <folding>
                 <marker date="1498076239000" expanded="true" signature="676:771" ph="..." />
@@ -39,11 +42,51 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/catan_client/src/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/catan_client/src/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+            <state relative-caret-position="285">
+              <caret line="219" column="21" lean-forward="true" selection-start-line="219" selection-start-column="21" selection-end-line="219" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="turn.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/catan_client/src/turn.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-469">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tiles_old.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/catan_client/src/tiles_old.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-86">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apiadapter.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/catan_client/src/apiadapter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -52,26 +95,9 @@
       <file leaf-file-name="roads.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/catan_client/src/roads.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="115" column="19" lean-forward="false" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
-              <folding>
-                <marker date="1498076239000" expanded="true" signature="28:97" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="120:1185" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="268:404" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="435:571" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="626:762" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="793:929" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="935:1095" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="1437:1870" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="1634:1853" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="1915:4238" ph="[...]" />
-                <marker date="1498076239000" expanded="true" signature="4280:4525" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="4304:4518" ph="{&quot;color&quot;: '##303030'...}" />
-                <marker date="1498076239000" expanded="true" signature="4568:5793" ph="[...]" />
-                <marker date="1498076239000" expanded="true" signature="5832:6119" ph="{...}" />
-                <marker date="1498076239000" expanded="true" signature="5896:6112" ph="{&quot;color&quot;: '##FFFFFF'...}" />
-                <marker date="1498076239000" expanded="true" signature="6132:6366" ph="//..." />
-              </folding>
+            <state relative-caret-position="805">
+              <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -79,7 +105,7 @@
       <file leaf-file-name="gameboard.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/catan_client/src/gameboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
+            <state relative-caret-position="-1431">
               <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
               <folding />
             </state>
@@ -95,6 +121,7 @@
       <find>onl</find>
       <find>turn</find>
       <find>start</find>
+      <find>playr</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -325,7 +352,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36039000" />
+    <option name="totallyTimeSpent" value="36475000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="961" y="23" width="959" height="1133" extended-state="0" />
@@ -424,6 +451,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -478,24 +506,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="779">
           <caret line="115" column="19" lean-forward="false" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
-          <folding>
-            <marker date="1498076239000" expanded="true" signature="28:97" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="120:1185" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="268:404" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="435:571" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="626:762" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="793:929" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="935:1095" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="1437:1870" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="1634:1853" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="1915:4238" ph="[...]" />
-            <marker date="1498076239000" expanded="true" signature="4280:4525" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="4304:4518" ph="{&quot;color&quot;: '##303030'...}" />
-            <marker date="1498076239000" expanded="true" signature="4568:5793" ph="[...]" />
-            <marker date="1498076239000" expanded="true" signature="5832:6119" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="5896:6112" ph="{&quot;color&quot;: '##FFFFFF'...}" />
-            <marker date="1498076239000" expanded="true" signature="6132:6366" ph="//..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -521,7 +532,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding />
+          <folding>
+            <marker date="1498080666000" expanded="true" signature="1093:1109" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -553,7 +566,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1498080666000" expanded="true" signature="1093:1109" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -571,7 +586,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="897">
           <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1498080666000" expanded="true" signature="1093:1109" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -584,25 +601,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/catan_client/src/hexagon.js" />
-    <entry file="file://$PROJECT_DIR$/catan_client/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catan_client/src/player.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catan_client/src/tiles_old.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -637,62 +639,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catan_client/src/roads.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="115" column="19" lean-forward="false" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
-          <folding>
-            <marker date="1498076239000" expanded="true" signature="28:97" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="120:1185" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="268:404" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="435:571" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="626:762" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="793:929" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="935:1095" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="1437:1870" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="1634:1853" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="1915:4238" ph="[...]" />
-            <marker date="1498076239000" expanded="true" signature="4280:4525" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="4304:4518" ph="{&quot;color&quot;: '##303030'...}" />
-            <marker date="1498076239000" expanded="true" signature="4568:5793" ph="[...]" />
-            <marker date="1498076239000" expanded="true" signature="5832:6119" ph="{...}" />
-            <marker date="1498076239000" expanded="true" signature="5896:6112" ph="{&quot;color&quot;: '##FFFFFF'...}" />
-            <marker date="1498076239000" expanded="true" signature="6132:6366" ph="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catan_client/src/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="17" column="26" lean-forward="true" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catan_client/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding>
+            <marker date="1498080666000" expanded="true" signature="1093:1109" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catan_client/src/tiles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="50" column="9" lean-forward="false" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+          <folding>
+            <marker date="1498076239000" expanded="true" signature="676:771" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catan_client/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catan_client/src/roads.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="805">
+          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/catan_client/src/gameboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
+        <state relative-caret-position="-1431">
           <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catan_client/src/tiles.js">
+    <entry file="file://$PROJECT_DIR$/catan_client/src/turn.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="50" column="9" lean-forward="false" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
-          <folding>
-            <marker date="1498076239000" expanded="true" signature="676:771" ph="..." />
-          </folding>
+        <state relative-caret-position="-469">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catan_client/src/tiles_old.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-86">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catan_client/src/apiadapter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catan_client/src/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="219" column="21" lean-forward="true" selection-start-line="219" selection-start-column="21" selection-end-line="219" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
