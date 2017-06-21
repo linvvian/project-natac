@@ -5,13 +5,11 @@ class Settlement {
     this.render()
   }
 
-  renderMySettlement(color){
-    this.settlements.forEach(function(element) {
-        context.fillStyle = element.color;
-        context.fillRect(element.left, element.top, element.width, element.height);
-    })
+  renderMySettlement(element, color){
+    let context = document.getElementById('hexmap').getContext('2d')
+    context.fillStyle = color
+    context.fillRect(element.left, element.top, element.width, element.height)
   }
-
 
   render() {
     var elem = document.getElementById('hexmap'),

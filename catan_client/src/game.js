@@ -1,7 +1,7 @@
 class Game {
   constructor() {
     this.turnCount = 1
-    this.players = [new Player(), new Player()]
+    this.players = [new Player('#FF0000'), new Player('#00FF00')]
     this.gameboard = new Gameboard()
     this.openSettlements = this.gameboard.settlements
     this.openRoads = this.gameboard.roads
@@ -14,6 +14,7 @@ class Game {
     this.game.addEventListener('click', this.eventsCheck.bind(this))
 
     this.renderTurnCount()
+    this.renderPlayer()
   }
 
 
@@ -38,7 +39,6 @@ class Game {
     }
     this.renderDice(rollOne, rollTwo)
   }
-
 
   findTileResourceAfterRoll(roll){
     var value = roll.toString()
@@ -90,12 +90,16 @@ class Game {
   }
 
   addResources(i){
-    let resources = document.querySelector(`.player${i}-info`)
-    let player = this.players[i - 1]
-    if (resources.innerHTML === '') {
-      resources.innerHTML = player.render()
-    } else {
-      resources.innerHTML = ''
+    let resources = document.querySelector(`#player${i}-info`)
+    $(resources).toggleClass('player-info')
+  }
+
+  renderPlayer(){
+    let players = this.players
+    for (let i = 1; i <= players.length; i++) {
+      let player = players[i-1]
+      let infoDiv = document.querySelector(`#player${i}-info`)
+      infoDiv.innerHTML = player.render()
     }
   }
 
@@ -151,10 +155,12 @@ class Game {
     if(chosen.className === 'settlement'){
       if (this.turn.placeSettlement(chosen)) {
         this.claimSettlement(chosen)
+        this.gameboard.s.renderMySettlement(chosen, this.turn.player.color)
       }
     } else if (chosen.className === 'road'){
       if (this.turn.placeRoad(chosen)) {
         this.claimRoad(chosen)
+        this.gameboard.r.renderRoad(chosen, this.turn.player.color)
       }
     }
     console.log(chosen)
@@ -184,31 +190,39 @@ class Game {
     switch (target) {
       case 'player1-submit':
         this.addPlayer(1)
+        this.renderPlayer()
         break;
       case 'player2-submit':
         this.addPlayer(2)
+        this.renderPlayer()
         break;
-        case 'player1-resources':
-            this.addResources(1)
-            break;
-        case 'player2-resources':
-            this.addResources(2)
-            break;
+      case 'player1-resources':
+        this.addResources(1)
+        this.renderPlayer()
+        break;
+      case 'player2-resources':
+        this.addResources(2)
+        this.renderPlayer()
+        break;
       case 'rollDice':
         this.rollDice()
-        break;
+        this.renderPlayer()
         break;
       case 'buySettlementBtn':
         turn.buySettlement()
+        this.renderPlayer()
         break;
       case 'buyRoadBtn':
         turn.buyRoad()
+        this.renderPlayer()
         break;
       case 'endTurnBtn':
         this.endTurn()
         break;
       case 'hexmap':
         this.getRoadOrSettlement.call(this, event, this.openSettlements, this.openRoads)
+        this.renderPlayer()
+        break;
       default:
         break;
     }

@@ -16,6 +16,10 @@ canvas {
   top: 200px;
 }
 
+.player-info {
+  display: none;
+}
+
 .turnCount-container {
   text-align: center;
   height: 50px;

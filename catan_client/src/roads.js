@@ -5,7 +5,7 @@ class Road {
     this.render()
   }
 
-  renderRoad(element){
+  renderRoad(element, color){
     let context = document.getElementById('hexmap').getContext('2d')
     context.beginPath()
     if (element.roadID%2===0 && element.roadID < 25) {
@@ -24,7 +24,7 @@ class Road {
       context.moveTo(element.left + (element.width/2), element.top)
       context.lineTo(element.left + (element.width/2), element.top + element.height)
     }
-    context.strokeStyle = '#5AEBAD'
+    context.strokeStyle = color
 
       context.lineWidth = 5
     context.stroke()
