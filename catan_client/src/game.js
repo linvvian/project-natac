@@ -18,15 +18,19 @@ class Game {
     let roll = Math.floor(Math.random()*6)+1 + Math.floor(Math.random()*6)+1
     document.querySelector('.roll').innerHTML = `${roll}`
     this.turn.roll = roll
-    var tile = this.findTileResourceAfterRoll.call(this, roll)
-    this.players.forEach(function(player) {
-      player.settlements.forEach(function(settlement) {
-        if (settlement.tiles.includes(tile[1])) {
-          player.resources[tile[0]] += 1
-        }
-      })
-      console.log(this.turn, player.resources)
-    }, this)
+    if (roll === 7) {
+      this.robber()
+    } else {
+      var tile = this.findTileResourceAfterRoll.call(this, roll)
+      this.players.forEach(function(player) {
+        player.settlements.forEach(function(settlement) {
+          if (settlement.tiles.includes(tile[1])) {
+            player.resources[tile[0]] += 1
+          }
+        })
+        console.log(this.turn, player.resources)
+      }, this)
+    }
   }
 
   findTileResourceAfterRoll(roll){
@@ -37,15 +41,24 @@ class Game {
         newArr = [tile.resource, tile]
       }
     })
-    return newArr
-    // this.gameboard.settlements.forEach(function(settlement){
-    //   settlement.tiles.forEach(function(tile) {
-        // console.log(tile) //this is currently undefined
-    //     if (tile.value === `${roll}`) {
-    //       return [tile.resource, tile]
-    //     }
-    //   })
-    // })
+  return newArr
+  }
+
+  robber() {
+    this.players.forEach((player) => {
+      var resources = player.resources
+      var resourceValues = Object.values(resources)
+      var resourceCount = resourceValues.reduce((acc, value) => acc + value)
+      if (resourceCount > 7) {
+        var removeCount = (resourceCount / 2)
+        for (var i = 0; i < removeCount; i++) {
+          player.resources[i] -= 1
+          alert("ROBBER!! YOU LOST HALF OF YOUR RESOURCES x x")
+        }
+      } else {
+        alert("ROBBER!!")
+      }
+    })
   }
 
   addPlayer(i){
