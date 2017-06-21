@@ -42,7 +42,7 @@ class Tile {
         ]
 
     var diceArr = [2,2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12]
-    var resourceArr = ['brick', 'brick', 'brick', 'brick', 'lumber', 'lumber', 'lumber', 'lumber', 'ore', 'ore', 'ore', 'wool', 'wool', 'wool', 'wool', 'grain', 'grain', 'grain', 'grain']
+    var resourceArr = ['bricks', 'bricks', 'bricks', 'bricks', 'lumbers', 'lumbers', 'lumbers', 'lumbers', 'ores', 'ores', 'ores', 'wools', 'wools', 'wools', 'wools', 'grains', 'grains', 'grains', 'grains']
     tiles.forEach(function(e, i){
       this.tiles.push({
           id: i+1,
