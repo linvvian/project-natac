@@ -18,7 +18,6 @@ class Game {
     document.querySelector('.roll').innerHTML = `${roll}`
     this.turn.roll = roll
     var tile = this.findTileResourceAfterRoll.call(this, roll)
-    // console.log(tile)
     this.players.forEach(function(player) {
       player.settlements.forEach(function(settlement) {
         if (settlement.tiles.includes(tile[1])) {
@@ -31,11 +30,13 @@ class Game {
 
   findTileResourceAfterRoll(roll){
     var value = roll.toString()
+    var newArr
     this.gameboard.tiles.forEach((tile) => {
       if (tile.value === value) {
-        return [tile.resource, tile]
+        newArr = [tile.resource, tile]
       }
     })
+    return newArr
     // this.gameboard.settlements.forEach(function(settlement){
     //   settlement.tiles.forEach(function(tile) {
         // console.log(tile) //this is currently undefined
@@ -179,4 +180,4 @@ class Game {
   }
 }
 
-new Game()
+const game = new Game()
