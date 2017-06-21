@@ -4,19 +4,13 @@ class Game {
     this.players = []
     this.gameboard = new Gameboard()
     this.openSettlements = this.gameboard.settlements
+    this.openRoads = this.gameboard.roads
     this.turn
 
-    // this.buttons = document.querySelector('.button-container')
-    // this.buttons.addEventListener('click', this.startTurn.bind(this))
-    // this.board = document.querySelector('.gameboard-container')
-    // this.board.addEventListener('click', this.boardEvents.bind(this))
     this.game = document.querySelector('.game')
     this.game.addEventListener('click', this.eventsCheck.bind(this))
 
     this.renderTurnCount()
-
-    // this.settlements = [new Settlements()]
-    // this.roads = [new Roads()]
   }
 
   rollDice(){
@@ -46,7 +40,6 @@ class Game {
     })
   }
 
-
   addPlayer(i){
     let name = document.querySelector(`#player${i}-name`).value
     if( this.players[i-1] ) {
@@ -57,7 +50,7 @@ class Game {
     console.log(this.players)
   }
 
-  getSettlement(event, settlements){
+  getClick(event, settlements, roads){
     let picked
     // gets hexmap element and sets the dimension borders of clicked element
     let elem = document.getElementById('hexmap'),
@@ -68,12 +61,21 @@ class Game {
         y = event.pageY - elemTop;
 
     // iterates through all open settlements to check click and retrieves the object element clicked on
-    settlements.forEach(function(element) {
-      if (y > element.top && y < element.top + element.height
-      && x > element.left && x < element.left + element.width) {
-        console.log('id', element.id, 'left', element.left, 'top', element.top)
-        picked = element
-      }})
+    if (!picked) {
+      settlements.forEach(function(element) {
+        if (y > element.top && y < element.top + element.height
+        && x > element.left && x < element.left + element.width) {
+          picked = element
+        }})
+    }
+    if (!picked) {
+      roads.forEach(function(element) {
+        if (y > element.top && y < element.top + element.height
+        && x > element.left && x < element.left + element.width) {
+          picked = element
+        }})
+    }
+
     return picked
   }
 
@@ -84,6 +86,31 @@ class Game {
     this.openSettlements = this.openSettlements.filter((e) => {
       return e !== undefined
     })
+  }
+
+  // remove claimed settlement and return rest of openSettlements
+  claimRoad(picked){
+    let index = this.openRoads.indexOf(picked)
+    delete this.openRoads[index]
+    this.openRoads = this.openRoads.filter((e) => {
+      return e !== undefined
+    })
+  }
+
+  getRoadOrSettlement(event, settlements, roads){
+    let chosen = this.getClick(event, settlements, roads)
+    if(chosen.className === 'settlement'){
+      if (this.turn.placeSettlement(chosen)) {
+        this.claimSettlement(chosen)
+      }
+    } else if (chosen.className === 'road'){
+      if (this.turn.placeRoad(chosen)) {
+        this.claimRoad(chosen)
+      }
+    }
+    console.log(chosen)
+    console.log(settlements.length)
+    console.log(roads.length)
   }
 
   currentPlayer(){
@@ -128,9 +155,7 @@ class Game {
         this.endTurn()
         break;
       case 'hexmap':
-        let clickedTarget = this.getSettlement(event, this.openSettlements)
-        turn.placeSettlement(clickedTarget)
-        console.log(clickedTarget)
+        this.getRoadOrSettlement.call(this, event, this.openSettlements, this.openRoads)
       default:
         break;
     }
