@@ -7,6 +7,8 @@ class Game {
     this.openRoads = this.gameboard.roads
     this.tiles = this.gameboard.tiles
     this.turn
+      this.player1Div = document.querySelector('#player1-corner')
+      this.player2Div = document.querySelector('#player2-corner')
 
     this.diceRoll = document.querySelector('.roll')
 
@@ -168,16 +170,16 @@ class Game {
 
   currentPlayer(){
     if (this.turnCount % 2 === 1){
-      return this.players[0]
+        return this.players[0]
     } else {
-      return this.players[1]
+        return this.players[1]
     }
   }
 
   startTurn(){
     let player = this.currentPlayer()
     this.turn = new Turn(player)
-    return this.turn
+      return this.turn
   }
 
   eventsCheck(){
@@ -231,6 +233,15 @@ class Game {
   endTurn() {
     this.turnCount ++
     this.renderTurnCount()
+      if (this.turnCount % 2 === 1){
+          this.player2Div.style.background = "none"
+          this.player1Div.style.background = "Crimson ";
+          return this.players[0]
+      } else {
+          this.player1Div.style.background = "none"
+          this.player2Div.style.background = "LightSkyBlue ";
+          return this.players[1]
+      }
     // check if player won
     // game over
     // else continue
