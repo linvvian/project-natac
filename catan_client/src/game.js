@@ -51,18 +51,22 @@ class Game {
   }
 
   robber() {
+    alert("Oh, no the Robber!")
     this.players.forEach((player) => {
       var resources = player.resources
       var resourceValues = Object.values(resources)
+      var resourceKeys = Object.keys(resources)
       var resourceCount = resourceValues.reduce((acc, value) => acc + value)
       if (resourceCount > 7) {
-        var removeCount = (resourceCount / 2)
-        for (var i = 0; i < removeCount; i++) {
-          player.resources[i] -= 1
+        var removeCount = parseInt(resourceCount / 2)
+        while (removeCount > 0) {
+          var resource = resourceKeys[Math.floor(Math.random()*resourceKeys.length)]
+          if (player.resources[resource] > 0) {
+            player.resources[resource] -= 1
+            removeCount -= 1
+          }
         }
-        alert("ROBBER!! YOU LOST HALF OF YOUR RESOURCES x x")
-      } else {
-        alert("ROBBER!!")
+        alert(`The robber stole half of ${player.name}'s resources`)
       }
     })
   }
