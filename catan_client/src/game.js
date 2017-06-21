@@ -109,8 +109,6 @@ class Game {
       }
     }
     console.log(chosen)
-    console.log(settlements.length)
-    console.log(roads.length)
   }
 
   currentPlayer(){
