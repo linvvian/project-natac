@@ -10,46 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619222715) do
+ActiveRecord::Schema.define(version: 20170621161654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "bricks", force: :cascade do |t|
-    t.string "name"
-    t.integer "quantity"
-    t.bigint "player_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_bricks_on_player_id"
-  end
-
-  create_table "grains", force: :cascade do |t|
-    t.string "name"
-    t.integer "quantity"
-    t.bigint "player_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_grains_on_player_id"
-  end
-
-  create_table "lumbers", force: :cascade do |t|
-    t.string "name"
-    t.integer "quantity"
-    t.bigint "player_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_lumbers_on_player_id"
-  end
-
-  create_table "ores", force: :cascade do |t|
-    t.string "name"
-    t.integer "quantity"
-    t.bigint "player_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_ores_on_player_id"
-  end
 
   create_table "players", force: :cascade do |t|
     t.string "name"
@@ -61,35 +25,53 @@ ActiveRecord::Schema.define(version: 20170619222715) do
   end
 
   create_table "roads", force: :cascade do |t|
-    t.integer "quantity"
+    t.integer "top_coordinate"
+    t.integer "left_coordinate"
+    t.bigint "settlements_id"
     t.bigint "player_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["player_id"], name: "index_roads_on_player_id"
+    t.index ["settlements_id"], name: "index_roads_on_settlements_id"
+  end
+
+  create_table "roads_settlements", force: :cascade do |t|
+    t.bigint "settlement_id"
+    t.bigint "road_id"
+    t.index ["road_id"], name: "index_roads_settlements_on_road_id"
+    t.index ["settlement_id"], name: "index_roads_settlements_on_settlement_id"
   end
 
   create_table "settlements", force: :cascade do |t|
-    t.integer "quantity"
+    t.integer "x_coordinate"
+    t.integer "y_coordinate"
+    t.bigint "tiles_id"
     t.bigint "player_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "roads_id"
     t.index ["player_id"], name: "index_settlements_on_player_id"
+    t.index ["roads_id"], name: "index_settlements_on_roads_id"
+    t.index ["tiles_id"], name: "index_settlements_on_tiles_id"
   end
 
-  create_table "wools", force: :cascade do |t|
-    t.string "name"
-    t.integer "quantity"
-    t.bigint "player_id"
+  create_table "settlements_tiles", force: :cascade do |t|
+    t.bigint "tile_id"
+    t.bigint "settlement_id"
+    t.index ["settlement_id"], name: "index_settlements_tiles_on_settlement_id"
+    t.index ["tile_id"], name: "index_settlements_tiles_on_tile_id"
+  end
+
+  create_table "tiles", force: :cascade do |t|
+    t.integer "top"
+    t.integer "left"
+    t.integer "value"
+    t.string "resource"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["player_id"], name: "index_wools_on_player_id"
   end
 
-  add_foreign_key "bricks", "players"
-  add_foreign_key "grains", "players"
-  add_foreign_key "lumbers", "players"
-  add_foreign_key "ores", "players"
   add_foreign_key "roads", "players"
+  add_foreign_key "roads", "settlements", column: "settlements_id"
+  add_foreign_key "roads_settlements", "roads"
+  add_foreign_key "roads_settlements", "settlements"
   add_foreign_key "settlements", "players"
-  add_foreign_key "wools", "players"
+  add_foreign_key "settlements", "roads", column: "roads_id"
+  add_foreign_key "settlements", "tiles", column: "tiles_id"
 end

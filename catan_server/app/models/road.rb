@@ -1,4 +1,3 @@
 class Road < ApplicationRecord
-  belongs_to :player
-  belongs_to :settlements
+  has_and_belongs_to_many :settlements
 end

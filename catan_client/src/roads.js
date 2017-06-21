@@ -1,6 +1,7 @@
 class Road {
   constructor(){
     this.roads = []
+    this.settlements = []
     this.render()
   }
 

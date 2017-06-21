@@ -74,11 +74,6 @@ class Gameboard {
     }
 
     function drawHexagon(canvasContext, x, y) {
-      let newDiv = document.createElement('div')
-      newDiv.id = Math.floor(x)
-      newDiv.className = 'tiles'
-      newDiv.style.left = Math.floor(x) + 'px'
-      newDiv.style.top = Math.floor(y) + 'px'
 
       canvasContext.beginPath();
       canvasContext.moveTo(x + hexRadius, y);
@@ -88,8 +83,6 @@ class Gameboard {
       canvasContext.lineTo(x, y + sideLength + hexHeight);
       canvasContext.lineTo(x, y + hexHeight);
       canvasContext.closePath();
-
-      document.getElementsByTagName('canvas')[0].appendChild(newDiv);
 
       canvasContext.stroke();
     }
