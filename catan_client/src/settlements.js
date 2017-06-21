@@ -34,7 +34,8 @@ class Settlement {
           top: e.y,
           left: e.x,
           id: i+1,
-          tiles: e.tiles
+          tiles: e.tiles,
+          className: 'settlement'
       })
     }, this)
 

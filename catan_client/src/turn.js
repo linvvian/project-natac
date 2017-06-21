@@ -5,23 +5,26 @@ class Turn {
     this.roll
   }
 
-
   placeSettlement(settlement){
-    if (this.player.settlementCount > 0) {
-      //places settlement on an open settlement location
+    if (this.player.settlementCount > 0 || this.player.countSettlements() === 0 ) {
+      this.player.points += 1
+      this.player.settlements.push(settlement)
+      this.player.settlementCount -= 1
+      console.log('placed')
+      return true
+    } else {
+      return false
     }
-    this.player.points += 1
-    //this.gameboard.placeSettlement()
-    this.player.settlements.push(settlement)
-    this.player.settlementCount -= 1
   }
 
   placeRoad(road) {
-    if (this.player.roadCount > 0) {
-      //places road on an open road location
+    if (this.player.roadCount > 0 || this.player.countRoads() === 0 ) {
+      this.player.roadCount -= 1
+      this.player.roads.push(road)
+      return true
+    } else {
+      return false
     }
-    this.player.roadCount -= 1
-    this.player.roads.push(road)
   }
 
   buyRoad() {
