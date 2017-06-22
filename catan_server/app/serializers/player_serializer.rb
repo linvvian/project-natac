@@ -1,3 +1,3 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :name, :wins, :losses, :points
+  attributes :id, :settlements, :roads, :resources, :name, :points, :settlementCount, :roadCount, :color
 end
