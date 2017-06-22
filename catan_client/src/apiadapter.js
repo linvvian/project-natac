@@ -22,17 +22,21 @@ class ApiAdapter {
 
 // saves the state of the tiles to the API
   saveState(gameStateObj) {
-    var obj = {
+    let obj = {
       "tiles": gameStateObj['tileClass']['tiles']
     }
-    fetch(this.tiles, {
+    let resp = {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      method: 'POST',
+      method: 'PATCH',
       body: JSON.stringify(obj)
-    })
+    }
+    fetch(this.tiles, resp)
+    .catch((error) => {
+      console.log(error.message)
+    }
   }
 
 //  saves the state of the players
@@ -50,6 +54,5 @@ class ApiAdapter {
       body: JSON.stringify(obj)
     })
   }
-
 
 }
