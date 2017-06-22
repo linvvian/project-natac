@@ -23,13 +23,12 @@ class ApiAdapter {
     var obj = {
       "tiles": gameStateObj['tileClass']['tiles']
     }
-    console.log(JSON.stringify(obj))
     fetch(this.tiles, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(obj)
     })
   }
