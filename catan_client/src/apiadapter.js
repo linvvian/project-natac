@@ -23,7 +23,6 @@ class ApiAdapter {
     var obj = {
       "tiles": gameStateObj['tileClass']['tiles']
     }
-    console.log(JSON.stringify(obj))
     fetch(this.tiles, {
       headers: {
         'Accept': 'application/json',
