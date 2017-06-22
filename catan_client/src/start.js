@@ -4,7 +4,7 @@
 $(document).ready(function () {
     class Start {
         constructor() {
-            this.startbtn = document.querySelector('#startbtn')
+            this.startbtn = document.querySelector('#startbtn1')
             this.startbtn.addEventListener('click', this.startGame.bind(this))
         }
 
