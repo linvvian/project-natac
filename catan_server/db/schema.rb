@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621161654) do
+ActiveRecord::Schema.define(version: 20170622170803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,11 @@ ActiveRecord::Schema.define(version: 20170621161654) do
     t.integer "left"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "width"
+    t.integer "height"
+    t.string "className"
+    t.string "resource"
+    t.integer "value"
   end
 
   add_foreign_key "roads", "players"
