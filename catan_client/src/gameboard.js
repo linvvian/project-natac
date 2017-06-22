@@ -1,12 +1,6 @@
 class Gameboard {
   constructor(){
-    this.t = new Tile()
-    this.tiles = this.t.tiles
-    this.r = new Road()
-    this.roads = this.r.roads
     this.render()
-    this.s = new Settlement(this.tiles)
-    this.settlements = this.s.settlements
   }
 
   render(){
@@ -20,7 +14,6 @@ class Gameboard {
         sideLength = 75,
         boardWidth = 4,
         boardHeight = 4;
-
 
     hexHeight = Math.sin(hexagonAngle) * sideLength;
     hexRadius = Math.cos(hexagonAngle) * sideLength;

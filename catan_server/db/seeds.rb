@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 tiles =
     [
@@ -27,13 +20,13 @@ end
 coordsSettle =
     [
       # Row one
-      { x:120, y:25, tiles: [1] }, { x:185, y:0, tiles: [1] }, { x:250, y:25, tiles: [2, 3] }, { x:315, y:0, tiles: [2] }, { x:380, y:25, tiles: [1, 2] }, { x:445, y:0, tiles: [3] }, { x:510, y:25, tiles:[3] },
+      { x:120, y:25, tiles: [1] }, { x:185, y:-5, tiles: [1] }, { x:250, y:25, tiles: [2, 3] }, { x:315, y:-5, tiles: [2] }, { x:380, y:25, tiles: [1, 2] }, { x:445, y:-5, tiles: [3] }, { x:510, y:25, tiles:[3] },
       # Row two
       { x:55, y:138, tiles:[4] }, { x:120, y:105, tiles:[1,4] }, { x:185, y:138,tiles:[1,4,5] }, { x:250, y:105, tiles:[1,2,5] }, { x:315, y:138, tiles:[2,5,6] }, { x:380, y:105, tiles: [2,3,6] }, { x:445, y:138, tiles:[3,6,7] }, { x:510, y:105, tiles:[3,7] }, { x:575, y:138, tiles:[7] },
       # third row
-      { x:0, y:250, tiles:[8] }, { x:55, y:215,tiles:[4,8] }, { x:120, y:250, tiles:[4,8,9]}, { x:185, y:215, tiles:[4,5,9]}, { x:250, y:250, tiles:[5,9,10] }, { x:315, y:215, tiles:[5,6,10]}, { x:380, y:250, tiles:[6,10,11] }, { x:445, y:215, tiles:[6,7,11] }, { x:510, y:250, tiles:[7,11,12]}, { x:575, y:215, tiles:[7,12] }, { x:640, y:250, tiles:[12] },
+      { x:-5, y:250, tiles:[8] }, { x:55, y:215,tiles:[4,8] }, { x:120, y:250, tiles:[4,8,9]}, { x:185, y:215, tiles:[4,5,9]}, { x:250, y:250, tiles:[5,9,10] }, { x:315, y:215, tiles:[5,6,10]}, { x:380, y:250, tiles:[6,10,11] }, { x:445, y:215, tiles:[6,7,11] }, { x:510, y:250, tiles:[7,11,12]}, { x:575, y:215, tiles:[7,12] }, { x:640, y:250, tiles:[12] },
       # fourth row
-      { x:0, y:330, tiles:[8] }, { x:55, y:365, tiles:[8,13] }, { x:120, y:330, tiles:[8,9,13] }, { x:185, y:365, tiles:[9,13,14] }, { x:250, y:330, tiles:[9,10,14] }, { x:315, y:365, tiles:[10,14,15] }, { x:380, y:330, tiles:[10,11,15] }, { x:445, y:365, tiles:[11,15,16] }, { x:510, y:330, tiles:[11,12,16] }, { x:575, y:365, tiles:[12,16] }, { x:640, y:330,tiles:[12] },
+      { x:-5, y:330, tiles:[8] }, { x:55, y:365, tiles:[8,13] }, { x:120, y:330, tiles:[8,9,13] }, { x:185, y:365, tiles:[9,13,14] }, { x:250, y:330, tiles:[9,10,14] }, { x:315, y:365, tiles:[10,14,15] }, { x:380, y:330, tiles:[10,11,15] }, { x:445, y:365, tiles:[11,15,16] }, { x:510, y:330, tiles:[11,12,16] }, { x:575, y:365, tiles:[12,16] }, { x:640, y:330,tiles:[12] },
       # fifth row
       { x:55, y:440, tiles:[13] }, { x:120, y:475, tiles:[13,17]}, { x:185, y:440, tiles:[13,14,17] }, { x:250, y:475, tiles:[14,17,18] }, { x:315, y:440, tiles:[14,15,18]}, { x:380, y:475, tiles:[15,18,19] }, { x:445, y:440, tiles:[15,16,19] }, { x:510, y:475, tiles:[16,19] }, { x:575, y:440, tiles:[16] },
       # sixth row

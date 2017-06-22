@@ -9,8 +9,13 @@ class ApiAdapter {
 
   getRoads() {
     return fetch(this.roads)
-    .then(response => response.json())
+  }
+
+  getTiles() {
+    return fetch(this.tiles)
+  }
+
+  getSettlements() {
+    return fetch(this.settlements)
   }
 }
-
-const api = new ApiAdapter()
