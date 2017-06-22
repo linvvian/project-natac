@@ -11,6 +11,10 @@ canvas {
   background-color: black;
 }
 
+.player-resBtn {
+  margin-top: 10px;
+}
+
 .player-tag {
   height: 20px;
   width: 100px;

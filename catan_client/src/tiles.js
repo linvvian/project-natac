@@ -38,7 +38,7 @@ class TileList {
     let arrayTiles = response.map( tile => {
       let randomResource = this.shuffle(resourceArray).shift()
       let randomValue = this.shuffle(diceArray).shift()
-      return new Tile(tile.id, tile.top, tile.left, randomResource, randomValue, 90, 90, 'tile')
+      return new Tile(tile.id, tile.top, tile.left, randomResource, randomValue, 110, 80, 'tile')
     })
     this.tiles = arrayTiles
   }
@@ -48,25 +48,24 @@ class TileList {
     .then(response => response.json())
     .then(this.createTiles.bind(this))
     .then(this.render.bind(this))
-    .then(this.renderTilePicture.bind(this))
   }
 
   loadImg() {
     this.brick = new Image()
-    // this.brick.onload = this.renderTilePicture.bind(this)
+    this.brick.onload = this.renderTilePicture.bind(this)
     this.brick.src = 'src/img/brick.jpg'
     this.grain = new Image()
-    // this.grain.onload = this.renderTilePicture.bind(this)
+    this.grain.onload = this.renderTilePicture.bind(this)
     this.grain.src = 'src/img/grain.jpg'
     this.lumber = new Image()
-    // this.lumber.onload = this.renderTilePicture.bind(this)
-    this.lumber.src = 'src/img/lumber.jpg'
+    this.lumber.onload = this.renderTilePicture.bind(this)
+    this.lumber.src = 'src/img/wood.jpeg'
     this.ore = new Image()
-    // this.ore.onload = this.renderTilePicture.bind(this)
+    this.ore.onload = this.renderTilePicture.bind(this)
     this.ore.src = 'src/img/ore.jpg'
     this.sheep = new Image()
-    // this.sheep.onload = this.renderTilePicture.bind(this)
-    this.sheep.src = 'src/img/sheep.jpg'
+    this.sheep.onload = this.renderTilePicture.bind(this)
+    this.sheep.src = 'src/img/wool.jpg'
   }
 
   renderTilePicture() {
@@ -87,8 +86,14 @@ class TileList {
         console.log("no pic")
       }
       context.fillStyle = fill
-      context.fillRect(tile.left, tile.top, tile.width, tile.height);
+      context.fillRect(tile.left, tile.top, tile.width, tile.height)
     }, this)
+
+    this.tiles.forEach(function(element) {
+      context.font="45px Verdana"
+      context.fillStyle = '#FFFFFF'
+      context.fillText(element.value, element.left + 37, element.top + 50, 55)
+    })
   }
 
   render() {
@@ -98,6 +103,7 @@ class TileList {
       context = elem.getContext('2d')
     // Render elements.
     this.tiles.forEach(function(element) {
+
       if(element.resource === 'bricks'){
           context.fillStyle = '#851b20'
       } else if (element.resource === 'lumbers'){
@@ -105,17 +111,16 @@ class TileList {
       } else if (element.resource === 'ores') {
           context.fillStyle = '#49443c'
       } else if (element.resource === 'wools') {
-          context.fillStyle = '#d2c6d6'
+          context.fillStyle = '#868686'
       } else if (element.resource === 'grains'){
           context.fillStyle = '#e7bb19'
-      } else {
-        console.log("no pic")
       }
 
-      context.fillText(element.resource, element.left + 30, element.top + 102 )
-      context.fillText(element.value, element.left + 40, element.top - 5)
-      context.fillRect(element.left, element.top, element.width, element.height);
+      context.font = '11px Verdana'
+      context.fillText(element.resource, element.left + 42, element.top + 95 )
+      // context.fillRect(element.left, element.top, element.width, element.height);
     })
+
   }
 
 }

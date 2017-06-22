@@ -23,7 +23,9 @@ class Game {
   }
 
   rollDice(){
-    if (this.roll) {
+    if (this.turnCount < 2) {
+      alert ("Place your settlements")
+    } else if (this.roll) {
       alert ("You already rolled the dice this turn")
     } else {
       let rollOne = Math.floor(Math.random()*6)+1
