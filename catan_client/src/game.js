@@ -2,14 +2,15 @@ class Game {
   constructor() {
     this.turnCount = 1
     this.roll
-    this.players = [new Player('#FF0000'), new Player('#00FF00')]
+    this.players = [new Player('#FF0000'), new Player('#0085FF')]
     this.gameboard = new Gameboard()
-    this.openSettlements = this.gameboard.settlements
-    this.openRoads = this.gameboard.roads
-    this.tiles = this.gameboard.tiles
+    this.tileClass = new TileList()
+    this.tileClass.renderTiles()
+    this.roadClass = new RoadList()
+    this.roadClass.renderRoads()
+    this.settlementClass = new SettlementList()
+    this.settlementClass.renderSettlements()
     this.turn
-    this.player1Div = document.querySelector('#player1-corner')
-    this.player2Div = document.querySelector('#player2-corner')
 
     this.diceRoll = document.querySelector('.roll')
 
@@ -18,8 +19,8 @@ class Game {
 
     this.renderTurnCount()
     this.renderPlayer()
+    this.playerTurnColor()
   }
-
 
   rollDice(){
     if (this.roll) {
@@ -51,7 +52,6 @@ class Game {
     // this.roll += 1
     }
   }
-
 
   findTileResourceAfterRoll(roll) {
     var value = roll.toString()
@@ -96,7 +96,7 @@ class Game {
 
   addPlayer(i){
     let name = document.querySelector(`#player${i}-name`).value
-    if( this.players[i-1] ) {
+    if( this.players[i-1] && name ) {
       this.players[i-1].name = name
     }
     console.log(this.players)
@@ -147,18 +147,19 @@ class Game {
 
   // remove claimed settlement and return rest of openSettlements
   claimSettlement(picked){
-    let index = this.openSettlements.indexOf(picked)
-    delete this.openSettlements[index]
-    this.openSettlements = this.openSettlements.filter((e) => {
+    let openSets = this.settlementClass.settlements
+    let index = openSets.indexOf(picked)
+    delete this.settlementClass.settlements[index]
+    this.settlementClass.settlements = this.settlementClass.settlements.filter((e) => {
       return e !== undefined
     })
   }
 
   // remove claimed settlement and return rest of openSettlements
   claimRoad(picked){
-    let index = this.openRoads.indexOf(picked)
-    delete this.openRoads[index]
-    this.openRoads = this.openRoads.filter((e) => {
+    let index = this.roadClass.roads.indexOf(picked)
+    delete this.roadClass.roads[index]
+    this.roadClass.roads = this.roadClass.roads.filter((e) => {
       return e !== undefined
     })
   }
@@ -168,12 +169,12 @@ class Game {
     if(chosen.className === 'settlement'){
       if (this.turn.placeSettlement(chosen)) {
         this.claimSettlement(chosen)
-        this.gameboard.s.renderMySettlement(chosen, this.turn.player.color)
+        this.settlementClass.renderMySettlement(chosen, this.turn.player.color)
       }
     } else if (chosen.className === 'road'){
       if (this.turn.placeRoad(chosen)) {
         this.claimRoad(chosen)
-        this.gameboard.r.renderRoad(chosen, this.turn.player.color)
+        this.roadClass.renderMyRoad(chosen, this.turn.player.color)
       }
     }
     console.log(chosen)
@@ -233,7 +234,7 @@ class Game {
         this.endTurn()
         break;
       case 'hexmap':
-        this.getRoadOrSettlement.call(this, event, this.openSettlements, this.openRoads)
+        this.getRoadOrSettlement.call(this, event, this.settlementClass.settlements, this.roadClass.roads)
         this.renderPlayer()
         break;
       default:
@@ -261,15 +262,7 @@ class Game {
     } else {
       this.turnCount ++
       this.renderTurnCount()
-      if (this.turnCount % 2 === 1){
-          this.player2Div.style.background = "none"
-          this.player1Div.style.background = "Crimson ";
-          return this.players[0]
-      } else {
-          this.player1Div.style.background = "none"
-          this.player2Div.style.background = "LightSkyBlue ";
-          return this.players[1]
-      }
+      this.playerTurnColor()
     }
   }
 
@@ -277,6 +270,17 @@ class Game {
     const div = document.querySelector('.turnCount-container')
     div.innerHTML = `<h2>Turn: ${this.turnCount}</h2>`
   }
-}
 
-const game = new Game()
+  playerTurnColor(){
+    let player1Div = document.querySelector('#player1-tag')
+    let player2Div = document.querySelector('#player2-tag')
+
+    if (this.turnCount % 2 === 1){
+      player2Div.style.background = "none"
+      player1Div.style.background = "#FF0000"
+    } else {
+      player1Div.style.background = "none"
+      player2Div.style.background = "#0085FF"
+    }
+  }
+}

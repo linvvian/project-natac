@@ -11,9 +11,19 @@ canvas {
   background-color: black;
 }
 
+.player-tag {
+  height: 20px;
+  width: 100px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  border-radius: 25px;
+}
+
 .players {
   position: fixed;
-  top: 200px;
+  top: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .player-info {

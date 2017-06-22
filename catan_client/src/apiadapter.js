@@ -9,7 +9,14 @@ class ApiAdapter {
 
   getRoads() {
     return fetch(this.roads)
-    .then(response => response.json())
+  }
+  
+  getTiles() {
+    return fetch(this.tiles)
+  }
+
+  getSettlements() {
+    return fetch(this.settlements)
   }
 
   saveState() {
@@ -19,7 +26,3 @@ class ApiAdapter {
     })
   }
 }
-
-
-
-const api = new ApiAdapter()
