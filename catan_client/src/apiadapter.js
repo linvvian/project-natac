@@ -10,7 +10,7 @@ class ApiAdapter {
   getRoads() {
     return fetch(this.roads)
   }
-  
+
   getTiles() {
     return fetch(this.tiles)
   }
@@ -19,10 +19,12 @@ class ApiAdapter {
     return fetch(this.settlements)
   }
 
-  saveState() {
-    fetch({
-      method: "post",
-      body: form
-    })
-  }
+  // saveState(gameStateObj) {
+  //   var form = new FormData
+  //   form.append("", gameStateObj[players])
+  //   fetch(URL, {
+  //     method: "post",
+  //     body: form
+  //   })
+  // }
 }
