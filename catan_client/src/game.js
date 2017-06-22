@@ -1,14 +1,15 @@
 class Game {
   constructor() {
     this.turnCount = 1
+    this.roll
     this.players = [new Player('#FF0000'), new Player('#00FF00')]
     this.gameboard = new Gameboard()
     this.openSettlements = this.gameboard.settlements
     this.openRoads = this.gameboard.roads
     this.tiles = this.gameboard.tiles
     this.turn
-      this.player1Div = document.querySelector('#player1-corner')
-      this.player2Div = document.querySelector('#player2-corner')
+    this.player1Div = document.querySelector('#player1-corner')
+    this.player2Div = document.querySelector('#player2-corner')
 
     this.diceRoll = document.querySelector('.roll')
 
@@ -21,31 +22,38 @@ class Game {
 
 
   rollDice(){
-    let rollOne = Math.floor(Math.random()*6)+1
-    let rollTwo =  Math.floor(Math.random()*6)+1
-    let roll = (rollOne + rollTwo)
-    document.querySelector('.roll').innerHTML = `${roll}`
-    this.turn.roll = roll
-    if (roll === 7) {
-      this.robber()
+    if (this.roll) {
+      alert ("You already rolled the dice this turn")
     } else {
-      var tilesArr = this.findTileResourceAfterRoll.call(this, roll)
-      this.players.forEach(function(player) {
-        player.settlements.forEach(function(settlement) {
-          for (let i = 0; i < tilesArr.length; i++) {
-            let tile = tilesArr[i]
-            if (settlement.tiles.includes(tile[1])) {
-              player.resources[tile[0]] += 1
+      let rollOne = Math.floor(Math.random()*6)+1
+      let rollTwo =  Math.floor(Math.random()*6)+1
+      let roll = (rollOne + rollTwo)
+      document.querySelector('.roll').innerHTML = `${roll}`
+      this.roll = roll
+      this.renderDice(rollOne, rollTwo)
+      if (roll === 7) {
+        this.robber()
+      } else {
+        var tilesArr = this.findTileResourceAfterRoll.call(this, roll)
+        this.players.forEach(function(player) {
+          player.settlements.forEach(function(settlement) {
+            for (let i = 0; i < tilesArr.length; i++) {
+              let tile = tilesArr[i]
+              if (settlement.tiles.includes(tile[1])) {
+                player.resources[tile[0]] += 1
+              }
             }
-          }
-        })
-        console.log(this.turn, player.resources)
-      }, this)
+          })
+          console.log(this.turn, player.resources)
+        }, this)
+      }
+
+    // this.roll += 1
     }
-    this.renderDice(rollOne, rollTwo)
   }
 
-  findTileResourceAfterRoll(roll){
+
+  findTileResourceAfterRoll(roll) {
     var value = roll.toString()
     var newArr = []
     this.gameboard.tiles.forEach((tile) => {
@@ -233,9 +241,26 @@ class Game {
     }
   }
 
+  winGame() {
+    var playerName = null
+    this.players.forEach(player => {
+      if (player.points >= 3) {
+        playerName = player.name
+      }
+    })
+    return playerName
+  }
+
   endTurn() {
-    this.turnCount ++
-    this.renderTurnCount()
+    console.log(this)
+    this.roll = null
+    this.diceRoll.innerHTML = ""
+    if (this.winGame() != null) {
+      let playerName = this.winGame()
+      alert(`${playerName} won the game!!`)
+    } else {
+      this.turnCount ++
+      this.renderTurnCount()
       if (this.turnCount % 2 === 1){
           this.player2Div.style.background = "none"
           this.player1Div.style.background = "Crimson ";
@@ -245,9 +270,7 @@ class Game {
           this.player2Div.style.background = "LightSkyBlue ";
           return this.players[1]
       }
-    // check if player won
-    // game over
-    // else continue
+    }
   }
 
   renderTurnCount(){

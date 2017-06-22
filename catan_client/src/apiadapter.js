@@ -11,6 +11,15 @@ class ApiAdapter {
     return fetch(this.roads)
     .then(response => response.json())
   }
+
+  saveState() {
+    fetch({
+      method: "post",
+      body: form
+    })
+  }
 }
+
+
 
 const api = new ApiAdapter()

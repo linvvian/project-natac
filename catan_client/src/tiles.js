@@ -8,7 +8,7 @@ class Tile {
   }
 
     loadImg() {
-    this.brick = new Imagee
+    this.brick = new Image()
 }
   renderTilePicture() {
       var elem = document.getElementById('hexmap'),
