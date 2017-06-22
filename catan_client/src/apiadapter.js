@@ -19,6 +19,7 @@ class ApiAdapter {
     return fetch(this.settlements)
   }
 
+// saves the state of the tiles to the API
   saveState(gameStateObj) {
     var obj = {
       "tiles": gameStateObj['tileClass']['tiles']
@@ -32,5 +33,21 @@ class ApiAdapter {
       body: JSON.stringify(obj)
     })
   }
+
+//  saves the state of the players
+  saveState(gameStateObj) {
+    // var obj = {
+    //   "tiles": gameStateObj['tileClass']['tiles']
+    // }
+    // fetch(this.tiles, {
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   method: 'POST',
+    //   body: JSON.stringify(obj)
+    // })
+  }
+
 
 }
