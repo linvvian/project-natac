@@ -4,6 +4,7 @@ class ApiAdapter {
     this.settlements = this.base_url + 'settlements'
     this.tiles = this.base_url + 'tiles'
     this.roads = this.base_url + 'roads'
+    this.players = this.base_url + 'players'
     this.page = 1
   }
 
@@ -21,10 +22,30 @@ class ApiAdapter {
 
 // saves the state of the tiles to the API
   saveState(gameStateObj) {
-    var obj = {
+    let obj = {
       "tiles": gameStateObj['tileClass']['tiles']
     }
-    fetch(this.tiles, {
+    let resp = {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'PATCH',
+      body: JSON.stringify(obj)
+    }
+    fetch(this.tiles, resp)
+    .catch((error) => {
+      console.log(error.message)
+    }
+  }
+
+//  saves the state of the players
+  savePlayerState(gameStateObj) {
+    var obj = {
+      "players": gameStateObj['players']
+    }
+    console.log(obj)
+    fetch(this.players, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -33,21 +54,5 @@ class ApiAdapter {
       body: JSON.stringify(obj)
     })
   }
-
-//  saves the state of the players
-  saveState(gameStateObj) {
-    // var obj = {
-    //   "tiles": gameStateObj['tileClass']['tiles']
-    // }
-    // fetch(this.tiles, {
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   method: 'POST',
-    //   body: JSON.stringify(obj)
-    // })
-  }
-
 
 }

@@ -39,6 +39,7 @@ class RoadList {
     this.adapter.getRoads()
     .then(response => response.json())
     .then(this.createRoads.bind(this))
+    .catch(function(error) { console.log('There has been a problem with your fetch operation: ' + error.message) } )
   }
 
   renderMyRoad(element, color){

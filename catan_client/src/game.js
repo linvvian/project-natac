@@ -38,33 +38,36 @@ class Game {
       if (roll === 7) {
         this.robber()
       } else {
-        var tilesArr = this.findTileResourceAfterRoll.call(this, roll)
-        this.players.forEach(function(player) {
-          player.settlements.forEach(function(settlement) {
-            for (let i = 0; i < tilesArr.length; i++) {
-              let tile = tilesArr[i]
-              if (settlement.tiles.includes(tile[1])) {
-                player.resources[tile[0]] += 1
-              }
-            }
-          })
-          console.log(this.turn, player.resources)
-        }, this)
+        this.increaseResource(roll)
       }
-
-    // this.roll += 1
     }
   }
 
   findTileResourceAfterRoll(roll) {
-    var value = roll.toString()
     var newArr = []
     this.tileClass.tiles.forEach((tile) => {
-      if (tile.value === value) {
+      if (tile.value === roll) {
         newArr.push([tile.resource, tile])
       }
     })
     return newArr
+  }
+
+  increaseResource(roll){
+    var tilesArr = this.findTileResourceAfterRoll.call(this, roll)
+    this.players.forEach(function(player) {
+      player.settlements.forEach(function(settlement) {
+        for (let i = 0; i < tilesArr.length; i++) {
+          let tile = tilesArr[i]
+          settlement.tiles.forEach(function(e) {
+            if (e.id === tile[1].id) {
+              player.procureResource(tile[0])
+            }
+          })
+        }
+      })
+      console.log(this.turn, player.resources)
+    }, this)
   }
 
   robber() {
@@ -148,6 +151,39 @@ class Game {
     return picked
   }
 
+  settlementPosition(chosen){
+    let result = true
+    let playerSetIDs = this.turn.player.settlements.map(set => { return set.id })
+    chosen.roads.forEach(function(road){
+      road.settlements_id.forEach((id) => {
+        if ($.inArray(id, playerSetIDs) !== -1) {
+          result = false
+        }
+      })
+    })
+    return result
+  }
+
+  roadPosition(chosen){
+    let result = false
+    let playerSetIDs = this.turn.player.settlements.map(set => { return set.id })
+    let playerRdIDs = this.turn.player.roads.map(rd => { return rd.id })
+    chosen.settlements.forEach((settle) => {
+      if ($.inArray(settle.id, playerSetIDs) !== -1) {
+        result = true
+      } else {
+        settle.roads_id.forEach((id) => {
+          if ($.inArray(id, playerRdIDs) !== -1) {
+            console.log(id, playerRdIDs)
+            result = true
+          }
+        })
+      }
+    })
+    console.log(result)
+    return result
+  }
+
   // remove claimed settlement and return rest of openSettlements
   claimSettlement(picked){
     let index = this.settlementClass.settlements.indexOf(picked)
@@ -169,12 +205,12 @@ class Game {
   getRoadOrSettlement(event, settlements, roads){
     let chosen = this.getClick(event, settlements, roads)
     if(chosen.className === 'settlement'){
-      if (this.turn.placeSettlement(chosen)) {
+      if (this.settlementPosition(chosen) && this.turn.placeSettlement(chosen)) {
         this.claimSettlement(chosen)
         this.settlementClass.renderMySettlement(chosen, this.turn.player.color)
       }
     } else if (chosen.className === 'road'){
-      if (this.turn.placeRoad(chosen)) {
+      if (this.roadPosition(chosen) && this.turn.placeRoad(chosen)) {
         this.claimRoad(chosen)
         this.roadClass.renderMyRoad(chosen, this.turn.player.color)
       }
@@ -256,6 +292,7 @@ class Game {
 
   endTurn() {
     this.adapter.saveState(this)
+    // this.adapter.savePlayerState(this)
     this.roll = null
     this.diceRoll.innerHTML = ""
     if (this.winGame() != null) {
