@@ -33,6 +33,8 @@ class SettlementList {
     .then(response => response.json())
     .then(this.createSettlements.bind(this))
     .then(this.render.bind(this))
+    .catch(function(error) { console.log('There has been a problem with your fetch operation: ' + error.message)
+    } )
   }
 
   renderMySettlement(element, color){

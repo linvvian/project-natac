@@ -38,7 +38,7 @@ class TileList {
     let arrayTiles = response.map( tile => {
       let randomResource = this.shuffle(resourceArray).shift()
       let randomValue = this.shuffle(diceArray).shift()
-      return new Tile(tile.id, tile.top, tile.left, randomResource, randomValue, 110, 80, 'tile')
+      return new Tile(tile.id, tile.top, tile.left, randomResource, randomValue, 90, 90, 'tile')
     })
     this.tiles = arrayTiles
   }
@@ -48,6 +48,7 @@ class TileList {
     .then(response => response.json())
     .then(this.createTiles.bind(this))
     .then(this.render.bind(this))
+    .catch(function(error) { console.log('There has been a problem with your fetch operation: ' + error.message) } )
   }
 
   loadImg() {
@@ -86,7 +87,7 @@ class TileList {
         console.log("no pic")
       }
       context.fillStyle = fill
-      context.fillRect(tile.left, tile.top, tile.width, tile.height)
+      context.fillRect(tile.left, tile.top, tile.width + 20, tile.height - 10)
     }, this)
 
     this.tiles.forEach(function(element) {
