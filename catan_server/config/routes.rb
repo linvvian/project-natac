@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :tiles
       resources :settlements
       resources :roads
+      resources :players
     end
   end
 end

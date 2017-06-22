@@ -12,7 +12,7 @@ class Api::V1::TilesController < ApplicationController
       if tile.save
         next
       else
-        render json: {message: agent.errors.full_messages, status: 500}
+        render json: {message: tile.errors.full_messages, status: 500}
       end
     end
     render json: {message: "yay", status: 200}

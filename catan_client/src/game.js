@@ -292,6 +292,7 @@ class Game {
 
   endTurn() {
     this.adapter.saveState(this)
+    // this.adapter.savePlayerState(this)
     this.roll = null
     this.diceRoll.innerHTML = ""
     if (this.winGame() != null) {
