@@ -1,5 +1,5 @@
 class Player {
-  constructor(color){
+  constructor(color, name){
     this.settlements = []
     this.roads = []
     this.resources = {
@@ -9,7 +9,7 @@ class Player {
       ores: 0,
       wools: 0
     }
-    this.name = 'Player'
+    this.name = name || 'Player'
     this.points = 0
     this.settlementCount = 2
     this.roadCount = 2

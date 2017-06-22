@@ -101,9 +101,17 @@ class Game {
   }
 
   addPlayer(i){
+    let color
+    if (this.players.length === 2) {
+      color = '#FF9900'
+    } else {
+      color = '#9600FF'
+    }
     let name = document.querySelector(`#player${i}-name`).value
     if( this.players[i-1] && name ) {
       this.players[i-1].name = name
+    } else {
+      this.players.push(new Player(color, name))
     }
     console.log(this.players)
   }
@@ -219,10 +227,14 @@ class Game {
   }
 
   currentPlayer(){
-    if (this.turnCount % 2 === 1){
+    if (this.turnCount % this.players.length === 1){
         return this.players[0]
-    } else {
+    } else if (this.turnCount % this.players.length === 2){
         return this.players[1]
+    } else if (this.turnCount % this.players.length === 3){
+        return this.players[2]
+    } else {
+        return this.players[this.players.length-1]
     }
   }
 
@@ -235,6 +247,7 @@ class Game {
   eventsCheck(){
     event.preventDefault()
     let player = this.currentPlayer()
+    console.log(player)
     let turn = this.startTurn()
     let target = event.target.id
 
@@ -254,6 +267,22 @@ class Game {
         break;
       case 'player2-resources':
         this.addResources(2)
+        this.renderPlayer()
+        break;
+      case 'player3-submit':
+        this.addPlayer(3)
+        this.renderPlayer()
+        break;
+      case 'player3-resources':
+        this.addResources(3)
+        this.renderPlayer()
+        break;
+      case 'player4-submit':
+        this.addPlayer(4)
+        this.renderPlayer()
+        break;
+      case 'player4-resources':
+        this.addResources(4)
         this.renderPlayer()
         break;
       case 'rollDice':
@@ -311,15 +340,14 @@ class Game {
   }
 
   playerTurnColor(){
-    let player1Div = document.querySelector('#player1-tag')
-    let player2Div = document.querySelector('#player2-tag')
-
-    if (this.turnCount % 2 === 1){
-      player2Div.style.background = "none"
-      player1Div.style.background = "#FF0000"
-    } else {
-      player1Div.style.background = "none"
-      player2Div.style.background = "#0085FF"
-    }
+    this.players.forEach((player, index) => {
+      if (player === this.currentPlayer()) {
+        let playerDiv = document.querySelector(`#player${index+1}-tag`)
+        playerDiv.style.background = player.color
+      } else {
+        let playerDiv = document.querySelector(`#player${index+1}-tag`)
+        playerDiv.style.background = "none"
+      }
+    }, this)
   }
 }
