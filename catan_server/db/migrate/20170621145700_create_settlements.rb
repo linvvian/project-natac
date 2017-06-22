@@ -4,7 +4,6 @@ class CreateSettlements < ActiveRecord::Migration[5.1]
       t.integer :x_coordinate
       t.integer :y_coordinate
 
-      t.references :player, foreign_key: true, optional: true
     end
   end
 end

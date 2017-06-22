@@ -36,7 +36,7 @@ class ApiAdapter {
     fetch(this.tiles, resp)
     .catch((error) => {
       console.log(error.message)
-    }
+    })
   }
 
 //  saves the state of the players

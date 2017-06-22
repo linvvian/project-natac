@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622170803) do
+ActiveRecord::Schema.define(version: 20170622194621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "player_roads", force: :cascade do |t|
+    t.bigint "player_id"
+    t.bigint "roads_id"
+    t.index ["player_id"], name: "index_player_roads_on_player_id"
+    t.index ["roads_id"], name: "index_player_roads_on_roads_id"
+  end
+
+  create_table "player_settlements", force: :cascade do |t|
+    t.bigint "player_id"
+    t.bigint "settlement_id"
+    t.index ["player_id"], name: "index_player_settlements_on_player_id"
+    t.index ["settlement_id"], name: "index_player_settlements_on_settlement_id"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "name"
@@ -66,6 +80,10 @@ ActiveRecord::Schema.define(version: 20170622170803) do
     t.integer "value"
   end
 
+  add_foreign_key "player_roads", "players"
+  add_foreign_key "player_roads", "roads", column: "roads_id"
+  add_foreign_key "player_settlements", "players"
+  add_foreign_key "player_settlements", "settlements"
   add_foreign_key "roads", "players"
   add_foreign_key "roads_settlements", "roads"
   add_foreign_key "roads_settlements", "settlements"
