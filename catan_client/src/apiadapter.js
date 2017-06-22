@@ -19,12 +19,19 @@ class ApiAdapter {
     return fetch(this.settlements)
   }
 
-  // saveState(gameStateObj) {
-  //   var form = new FormData
-  //   form.append("", gameStateObj[players])
-  //   fetch(URL, {
-  //     method: "post",
-  //     body: form
-  //   })
-  // }
+  saveState(gameStateObj) {
+    var obj = {
+      "tiles": gameStateObj['tileClass']['tiles']
+    }
+    console.log(JSON.stringify(obj))
+    fetch(this.tiles, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(obj)
+    })
+  }
+
 }

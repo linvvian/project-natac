@@ -2,6 +2,7 @@ class Game {
   constructor() {
     this.turnCount = 1
     this.roll
+    this.adapter = new ApiAdapter()
     this.players = [new Player('#FF0000'), new Player('#0085FF')]
     this.gameboard = new Gameboard()
     this.tileClass = new TileList()
@@ -254,7 +255,7 @@ class Game {
   }
 
   endTurn() {
-    console.log(this)
+    this.adapter.saveState(this)
     this.roll = null
     this.diceRoll.innerHTML = ""
     if (this.winGame() != null) {
