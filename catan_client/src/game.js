@@ -56,7 +56,7 @@ class Game {
   findTileResourceAfterRoll(roll) {
     var value = roll.toString()
     var newArr = []
-    this.gameboard.tiles.forEach((tile) => {
+    this.tileClass.tiles.forEach((tile) => {
       if (tile.value === value) {
         newArr.push([tile.resource, tile])
       }
@@ -147,8 +147,7 @@ class Game {
 
   // remove claimed settlement and return rest of openSettlements
   claimSettlement(picked){
-    let openSets = this.settlementClass.settlements
-    let index = openSets.indexOf(picked)
+    let index = this.settlementClass.settlements.indexOf(picked)
     delete this.settlementClass.settlements[index]
     this.settlementClass.settlements = this.settlementClass.settlements.filter((e) => {
       return e !== undefined
