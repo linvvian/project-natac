@@ -24,7 +24,7 @@ class Game {
   }
 
   rollDice(){
-    if (this.turnCount < 2) {
+    if (this.turnCount <= this.players.length) {
       alert ("Place your settlements")
     } else if (this.roll) {
       alert ("You already rolled the dice this turn")
@@ -339,17 +339,23 @@ class Game {
   }
 
   endTurn() {
-    this.saveState(this)
+    if (this.turn.player.settlementCount !== 0 || this.turn.player.roadCount !== 0) {
+      alert("Place your settlements/roads")
+    } else if (this.roll === null && this.turnCount > this.players.length) {
+      alert("Roll first")
+    } else {
+      this.saveState(this)
+      if (this.winGame() != null) {
+        let playerName = this.winGame()
+        alert(`${playerName} won the game!!`)
+      } else {
+        this.turnCount ++
+        this.renderTurnCount()
+        this.playerTurnColor()
+      }
+    }
     this.roll = null
     this.diceRoll.innerHTML = ""
-    if (this.winGame() != null) {
-      let playerName = this.winGame()
-      alert(`${playerName} won the game!!`)
-    } else {
-      this.turnCount ++
-      this.renderTurnCount()
-      this.playerTurnColor()
-    }
   }
 
   saveState(gameStateObj) {
