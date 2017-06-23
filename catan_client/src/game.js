@@ -386,16 +386,18 @@ class Game {
   }
 
   submitTrade(){
-    let indexTrader = this.players.indexOf(this.trader)
-    let indexTradee = this.players.indexOf(this.tradee)
-    let traderResource = document.querySelector(`#player${indexTrader+1}-tradeR`).value
-    let tradeeResource = document.querySelector(`#player${indexTradee+1}-tradeR`).value
+    if (this.trader) {
+      let indexTrader = this.players.indexOf(this.trader)
+      let indexTradee = this.players.indexOf(this.tradee)
+      let traderResource = document.querySelector(`#player${indexTrader+1}-tradeR`).value
+      let tradeeResource = document.querySelector(`#player${indexTradee+1}-tradeR`).value
 
-    this.trader.resources[traderResource] -= 1
-    this.tradee.resources[tradeeResource] -= 1
-    this.tradee.resources[traderResource] += 1
-    this.trader.resources[tradeeResource] += 1
-    this.renderPlayer()
+      this.trader.resources[traderResource] -= 1
+      this.tradee.resources[tradeeResource] -= 1
+      this.tradee.resources[traderResource] += 1
+      this.trader.resources[tradeeResource] += 1
+      this.renderPlayer()
+    }
 
     document.querySelector(`#player${indexTrader+1}-tradeR`).style.visibility = "hidden"
     document.querySelector(`#player${indexTradee+1}-tradeR`).style.visibility = "hidden"
@@ -419,15 +421,21 @@ class Game {
   }
 
   initiateTrade(){
-    let trader = this.turn.player
-    this.players.forEach((player, index) => {
-      if (player === trader) {
-        let playerBtn = document.querySelector(`#player${index+1}-tradeBtn`)
-        playerBtn.style.visibility = "hidden"
-      } else {
-        let playerBtn = document.querySelector(`#player${index+1}-tradeBtn`)
-        playerBtn.style.visibility = "visible"
-      }
-    }, this)
+    let resourceCount = Object.values(this.turn.player.resources).reduce((a, b) => a + b)
+    if(this.turnCount > this.players.length && resourceCount > 0) {
+      document.querySelector('#submitTradeBtn').style.visibility = "visible"
+      let trader = this.turn.player
+      this.players.forEach((player, index) => {
+        if (player === trader) {
+          let playerBtn = document.querySelector(`#player${index+1}-tradeBtn`)
+          playerBtn.style.visibility = "hidden"
+        } else {
+          let playerBtn = document.querySelector(`#player${index+1}-tradeBtn`)
+          playerBtn.style.visibility = "visible"
+        }
+      }, this)
+    } else {
+      alert("You don't have resources")
+    }
   }
 }

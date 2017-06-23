@@ -51,7 +51,7 @@ class Player {
   }
 
   render(){
-    return `<h2>${this.name}</h2><p>Settlements: ${this.countSettlements()}</p><p>Roads: ${this.countRoads()}</p><p>Resources:<br> ${this.renderResources()}</p><p>Points: ${this.points}</p><p>Settlements to Place: ${this.settlementCount}</p><p>Roads to Place: ${this.roadCount}</p>`
+    return `<h2>${this.name}</h2><p>Settlements: ${this.countSettlements()}<br>Roads: ${this.countRoads()}</p><p>Resources:<br> ${this.renderResources()}</p><p>Points: ${this.points}</p><p>Settlements to Place: ${this.settlementCount}<br>Roads to Place: ${this.roadCount}</p>`
   }
 
 }

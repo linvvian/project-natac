@@ -16,9 +16,8 @@ canvas {
 }
 
 .hexmap {
-  position: absolute;
+  position: relative;
   text-align: center;
-  left: 20%;
   top: 220px;
   margin: 0 auto;
 }
@@ -39,7 +38,7 @@ canvas {
 .players {
   position:absolute;
   margin:0;
-  padding:5px;
+  padding:5px 15px;
 }
 
 .player-info {
@@ -71,6 +70,24 @@ canvas {
 .button-container {
   text-align: center;
   height: 100px;
+  margin-left: 80px;
+}
+
+.trade_with{
+  margin: 5px;
+}
+
+.to-build{
+  font-size: 11px;
+}
+
+#endTurnBtn {
+  margin-top: 10px;
+  margin-right: 75px;
+}
+
+#submitTradeBtn {
+  visibility: hidden;
 }
 
 #player1-corner {
@@ -93,4 +110,28 @@ canvas {
   bottom:0;
   right:0;
   margin-bottom: 15px;
+}
+
+#player1-info {
+  border: 2px solid #FF0000;
+  border-radius: 15px;
+  padding: 0 10px;
+}
+
+#player2-info {
+  border: 2px solid #0085FF;
+  border-radius: 15px;
+  padding: 0 10px;
+}
+
+#player3-info {
+  border: 2px solid #FF9900;
+  border-radius: 15px;
+  padding: 0 10px;
+}
+
+#player4-info {
+  border: 2px solid #9600FF;
+  border-radius: 15px;
+  padding: 0 10px;
 }
