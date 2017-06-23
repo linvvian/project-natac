@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="css/style.css">
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body>
 
@@ -25,27 +25,27 @@
         <div id='player1-corner' class='players'>
           <div id='player1-tag' class='player-tag'></div>
           <form><input type="text" id="player1-name"><input type="submit" id="player1-submit"></form>
-          <button class="player-resBtn" id="player1-resources" >P1 Resources</button>
+          <button class="player-resBtn" class="ui toggle button active" id="player1-resources" >P1 Resources</button>
           <div class='player-info' id='player1-info'></div>
         </div>
 
         <div id='player2-corner' class='players'>
           <div id='player2-tag' class='player-tag'></div>
           <form><input type="text" id="player2-name"><input type="submit" id="player2-submit"></form>
-          <button class="player-resBtn" id="player2-resources">P2 Resources</button>
+          <button class="player-resBtn" class="ui toggle button active" id="player2-resources">P2 Resources</button>
           <div class='player-info' id='player2-info'></div>
         </div>
 
         <div id='player3-corner' class='players'>
           <div class='player-info' id='player3-info'></div>
-          <button class="player-resBtn" id="player3-resources">P3 Resources</button>
+          <button class="player-resBtn" class="ui toggle button active" id="player3-resources">P3 Resources</button>
           <div id='player3-tag' class='player-tag'></div>
           <form><input type="text" id="player3-name"><input type="submit" id="player3-submit"></form>
         </div>
 
         <div id='player4-corner' class='players'>
           <div class='player-info' id='player4-info'></div>
-          <button class="player-resBtn" id="player4-resources">P4 Resources</button>
+          <button class="player-resBtn" class="ui toggle button active" id="player4-resources">P4 Resources</button>
           <div id='player4-tag' class='player-tag'></div>
           <form><input type="text" id="player4-name"><input type="submit" id="player4-submit"></form>
         </div>
@@ -54,17 +54,16 @@
       </div>
     </div>
 
+    <script type="text/javascript" src="src/tiles.js"></script>
+    <script type="text/javascript" src="src/settlements.js"></script>
+    <script type="text/javascript" src="src/roads.js"></script>
+    <script type="text/javascript" src="src/apiadapter.js"></script>
+    <script type="text/javascript" src="src/gameboard.js"></script>
+    <script type="text/javascript" src="src/player.js"></script>
+    <script type="text/javascript" src="src/turn.js"></script>
+    <script type="text/javascript" src="src/game.js"></script>
+    <script type="text/javascript" src="src/index.js"></script>
+    
   </body>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="src/tiles.js"></script>
-  <script type="text/javascript" src="src/settlements.js"></script>
-  <script type="text/javascript" src="src/roads.js"></script>
-  <script type="text/javascript" src="src/apiadapter.js"></script>
-  <script type="text/javascript" src="src/gameboard.js"></script>
-  <script type="text/javascript" src="src/player.js"></script>
-  <script type="text/javascript" src="src/turn.js"></script>
-  <script type="text/javascript" src="src/game.js"></script>
-  <script type="text/javascript" src="src/index.js"></script>
 
 </html>

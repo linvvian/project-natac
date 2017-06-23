@@ -3,7 +3,7 @@ class Api::V1::TilesController < ApplicationController
     render json: Tile.all
   end
 
-  # not needs for tiles
+  # not needed for tiles
   # def create
   #   tiles = params.require(:tiles).map do |tile|
   #     tile.permit(:top, :left, :width, :height, :className, :resource, :value)

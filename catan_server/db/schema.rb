@@ -10,16 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622194621) do
+ActiveRecord::Schema.define(version: 20170623131502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "games", force: :cascade do |t|
+    t.integer "turnCount"
+    t.string "gameID"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "player_roads", force: :cascade do |t|
     t.bigint "player_id"
-    t.bigint "roads_id"
+    t.bigint "road_id"
     t.index ["player_id"], name: "index_player_roads_on_player_id"
-    t.index ["roads_id"], name: "index_player_roads_on_roads_id"
+    t.index ["road_id"], name: "index_player_roads_on_road_id"
   end
 
   create_table "player_settlements", force: :cascade do |t|
@@ -31,18 +38,27 @@ ActiveRecord::Schema.define(version: 20170622194621) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
-    t.integer "wins"
-    t.integer "losses"
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "bricks"
+    t.integer "wools"
+    t.integer "lumbers"
+    t.integer "grains"
+    t.integer "ores"
+    t.string "color"
+    t.integer "settlementCount"
+    t.integer "roadCount"
+    t.bigint "game_id"
+    t.string "gameID"
+    t.index ["game_id"], name: "index_players_on_game_id"
   end
 
   create_table "roads", force: :cascade do |t|
     t.integer "top_coordinate"
     t.integer "left_coordinate"
-    t.bigint "player_id"
-    t.index ["player_id"], name: "index_roads_on_player_id"
+    t.bigint "players_id"
+    t.index ["players_id"], name: "index_roads_on_players_id"
   end
 
   create_table "roads_settlements", force: :cascade do |t|
@@ -55,9 +71,9 @@ ActiveRecord::Schema.define(version: 20170622194621) do
   create_table "settlements", force: :cascade do |t|
     t.integer "x_coordinate"
     t.integer "y_coordinate"
-    t.bigint "player_id"
     t.bigint "roads_id"
-    t.index ["player_id"], name: "index_settlements_on_player_id"
+    t.bigint "players_id"
+    t.index ["players_id"], name: "index_settlements_on_players_id"
     t.index ["roads_id"], name: "index_settlements_on_roads_id"
   end
 
@@ -81,12 +97,11 @@ ActiveRecord::Schema.define(version: 20170622194621) do
   end
 
   add_foreign_key "player_roads", "players"
-  add_foreign_key "player_roads", "roads", column: "roads_id"
+  add_foreign_key "player_roads", "roads"
   add_foreign_key "player_settlements", "players"
   add_foreign_key "player_settlements", "settlements"
-  add_foreign_key "roads", "players"
+  add_foreign_key "players", "games"
   add_foreign_key "roads_settlements", "roads"
   add_foreign_key "roads_settlements", "settlements"
-  add_foreign_key "settlements", "players"
   add_foreign_key "settlements", "roads", column: "roads_id"
 end

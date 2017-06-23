@@ -59,8 +59,9 @@ class Game {
       player.settlements.forEach(function(settlement) {
         for (let i = 0; i < tilesArr.length; i++) {
           let tile = tilesArr[i]
-          settlement.tiles.forEach(function(e) {
-            if (e.id === tile[1].id) {
+          console.log(settlement)
+          settlement.tiles_id.forEach(function(e) {
+            if (e === tile[1].id) {
               player.procureResource(tile[0])
             }
           })
@@ -320,8 +321,7 @@ class Game {
   }
 
   endTurn() {
-    this.adapter.saveState(this)
-    // this.adapter.savePlayerState(this)
+    this.saveState(this)
     this.roll = null
     this.diceRoll.innerHTML = ""
     if (this.winGame() != null) {
@@ -331,6 +331,16 @@ class Game {
       this.turnCount ++
       this.renderTurnCount()
       this.playerTurnColor()
+    }
+  }
+
+  saveState(gameStateObj) {
+    if (gameStateObj.turnCount === 1) {
+      this.adapter.saveTilesState(gameStateObj)
+    } else if (gameStateObj.turnCount === gameStateObj.players.length) {
+      this.adapter.saveGame(this)
+    } else if (gameStateObj.turnCount > gameStateObj.players.length) {
+      this.adapter.updateGame(this)
     }
   }
 

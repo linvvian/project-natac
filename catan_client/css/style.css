@@ -74,9 +74,11 @@ canvas {
 #player3-corner {
   bottom:0;
   left:0;
+  margin-bottom: 15px;
 }
 
 #player4-corner {
   bottom:0;
   right:0;
+  margin-bottom: 15px;
 }

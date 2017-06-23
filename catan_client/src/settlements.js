@@ -3,7 +3,7 @@ class Settlement {
     this.id = id
     this.left = x
     this.top = y
-    this.tiles = tilesArray
+    this.tiles_id = tilesArray
     this.roads = roadsArray
     this.color = color
     this.width = width
@@ -23,7 +23,7 @@ class SettlementList {
     let arraySettlements = response.map( set => {
       let color = '#273776'
 
-      return new Settlement(set.id, set.x_coordinate, set.y_coordinate, set.tiles, set.roads, color, 20, 20, 'settlement' )
+      return new Settlement(set.id, set.x_coordinate, set.y_coordinate, set.tiles_id, set.roads, color, 20, 20, 'settlement' )
     })
     this.settlements = arraySettlements
   }
