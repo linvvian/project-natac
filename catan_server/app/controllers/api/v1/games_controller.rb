@@ -1,4 +1,12 @@
 class Api::V1::GamesController < ApplicationController
+  def index
+    games = {
+      "count": Game.all.count,
+      "game": Game.all
+    }
+    render json: games
+  end
+
   def create
     game = Game.new(turnCount: params[:game][:turnCount], gameID: params[:game][:gameID])
     if game.save
@@ -30,6 +38,11 @@ class Api::V1::GamesController < ApplicationController
 
     if game.update(turnCount: params[:game][:turnCount])
     end
+  end
+
+  def show
+    game = Game.find(params[:id])
+    render json: game
   end
 
   private

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :games, except: [:create, :update]
       post '/games', to: 'games#create'
       patch '/games', to: 'games#update'
       resources :tiles, except: [:create, :update]

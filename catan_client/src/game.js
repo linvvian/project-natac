@@ -286,6 +286,24 @@ class Game {
         this.addResources(4)
         this.renderPlayer()
         break;
+      case 'player1-tradeBtn':
+        this.tradeWith(1)
+        break;
+      case 'player2-tradeBtn':
+        this.tradeWith(2)
+        break;
+      case 'player3-tradeBtn':
+        this.tradeWith(3)
+        break;
+      case 'player4-trade':
+        this.tradeWith(4)
+        break;
+      case 'tradeBtn':
+        this.initiateTrade()
+        break;
+      case 'submitTradeBtn':
+        this.submitTrade()
+        break;
       case 'rollDice':
         this.rollDice()
         this.renderPlayer()
@@ -357,6 +375,52 @@ class Game {
       } else {
         let playerDiv = document.querySelector(`#player${index+1}-tag`)
         playerDiv.style.background = "none"
+      }
+    }, this)
+  }
+
+  submitTrade(){
+    let indexTrader = this.players.indexOf(this.trader)
+    let indexTradee = this.players.indexOf(this.tradee)
+    let traderResource = document.querySelector(`#player${indexTrader+1}-tradeR`).value
+    let tradeeResource = document.querySelector(`#player${indexTradee+1}-tradeR`).value
+
+    this.trader.resources[traderResource] -= 1
+    this.tradee.resources[tradeeResource] -= 1
+    this.tradee.resources[traderResource] += 1
+    this.trader.resources[tradeeResource] += 1
+    this.renderPlayer()
+
+    document.querySelector(`#player${indexTrader+1}-tradeR`).style.visibility = "hidden"
+    document.querySelector(`#player${indexTradee+1}-tradeR`).style.visibility = "hidden"
+    document.querySelector(`#player${indexTradee+1}-tradeBtn`).style.visibility = "hidden"
+  }
+
+  tradeWith(i){
+    let trader = this.turn.player
+    this.trader = this.turn.player
+    this.tradee = this.players[i-1]
+
+    this.players.forEach((player, index) => {
+      if (player === this.trader || player === this.tradee) {
+        let tradeResources = document.querySelector(`#player${index+1}-tradeR`)
+        tradeResources.style.visibility = "visible"
+      } else {
+        let playerBtn = document.querySelector(`#player${index+1}-tradeBtn`)
+        playerBtn.style.visibility = "hidden"
+      }
+    }, this)
+  }
+
+  initiateTrade(){
+    let trader = this.turn.player
+    this.players.forEach((player, index) => {
+      if (player === trader) {
+        let playerBtn = document.querySelector(`#player${index+1}-tradeBtn`)
+        playerBtn.style.visibility = "hidden"
+      } else {
+        let playerBtn = document.querySelector(`#player${index+1}-tradeBtn`)
+        playerBtn.style.visibility = "visible"
       }
     }, this)
   }

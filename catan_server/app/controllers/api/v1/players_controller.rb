@@ -15,7 +15,7 @@ class Api::V1::PlayersController < ApplicationController
       else
         render json: {message: player.errors.full_messages, status: 500}
       end
-      
+
     end
     # render json: {message: "yay", status: 200}
   end

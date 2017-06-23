@@ -23,7 +23,13 @@ class ApiAdapter {
   }
 
   loadLastGame(){
-    
+    fetch(this.games)
+    .then(response => response.json())
+    .then(response => this.parseGame.call(this, response))
+  }
+
+  parseGame(response){
+    let count = response.count
   }
 
 // creates game in database

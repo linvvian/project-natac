@@ -46,6 +46,18 @@ canvas {
   display: none;
 }
 
+.player-resources {
+  visibility: hidden;
+}
+
+.player-values {
+  visibility: hidden;
+}
+
+.trade_with {
+  visibility: hidden;
+}
+
 .turnCount-container {
   text-align: center;
   height: 50px;

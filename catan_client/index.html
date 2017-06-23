@@ -17,6 +17,8 @@
           <button id='rollDice'>Roll Dice</button>
           <button id='buySettlementBtn'>Buy Settlement</button>
           <button id='buyRoadBtn'>Buy Road</button>
+          <button id="tradeBtn">Start Trade</button>
+          <button id="submitTradeBtn">Submit Trade</button>
           <button id='endTurnBtn'>End Turn</button>
         </div>
       </div>
@@ -26,6 +28,16 @@
           <div id='player1-tag' class='player-tag'></div>
           <form><input type="text" id="player1-name"><input type="submit" id="player1-submit"></form>
           <button class="player-resBtn" class="ui toggle button active" id="player1-resources" >P1 Resources</button>
+          <div class="player-trade" id="player1-trade">
+            <button class="trade_with" id="player1-tradeBtn">Trade With</button>
+            <select class="player-resources" id="player1-tradeR">
+              <option value="bricks">Bricks</option>
+              <option value="lumbers">Lumbers</option>
+              <option value="wools">Wools</option>
+              <option value="ores">Ores</option>
+              <option value="grains">Grains</option>
+            </select>
+          </div>
           <div class='player-info' id='player1-info'></div>
         </div>
 
@@ -33,6 +45,16 @@
           <div id='player2-tag' class='player-tag'></div>
           <form><input type="text" id="player2-name"><input type="submit" id="player2-submit"></form>
           <button class="player-resBtn" class="ui toggle button active" id="player2-resources">P2 Resources</button>
+          <div class="player-trade" id="player2-trade">
+            <button class="trade_with" id="player2-tradeBtn">Trade With</button>
+            <select class="player-resources" id="player2-tradeR">
+              <option value="bricks">Bricks</option>
+              <option value="lumbers">Lumbers</option>
+              <option value="wools">Wools</option>
+              <option value="ores">Ores</option>
+              <option value="grains">Grains</option>
+            </select>
+          </div>
           <div class='player-info' id='player2-info'></div>
         </div>
 
@@ -40,6 +62,16 @@
           <div class='player-info' id='player3-info'></div>
           <button class="player-resBtn" class="ui toggle button active" id="player3-resources">P3 Resources</button>
           <div id='player3-tag' class='player-tag'></div>
+          <div class="player-trade" id="player3-trade">
+            <select class="player-resources" id="player3-tradeR">
+              <option value="bricks">Bricks</option>
+              <option value="lumbers">Lumbers</option>
+              <option value="wools">Wools</option>
+              <option value="ores">Ores</option>
+              <option value="grains">Grains</option>
+            </select>
+            <button class="trade_with" id="player3-tradeBtn">Trade With</button>
+          </div>
           <form><input type="text" id="player3-name"><input type="submit" id="player3-submit"></form>
         </div>
 
@@ -47,6 +79,16 @@
           <div class='player-info' id='player4-info'></div>
           <button class="player-resBtn" class="ui toggle button active" id="player4-resources">P4 Resources</button>
           <div id='player4-tag' class='player-tag'></div>
+          <div class="player-trade" id="player4-trade">
+            <select class="player-resources" id="player4-tradeR">
+              <option value="bricks">Bricks</option>
+              <option value="lumbers">Lumbers</option>
+              <option value="wools">Wools</option>
+              <option value="ores">Ores</option>
+              <option value="grains">Grains</option>
+            </select>
+            <button class="trade_with" id="player4-tradeBtn">Trade With</button>
+          </div>
           <form><input type="text" id="player4-name"><input type="submit" id="player4-submit"></form>
         </div>
 
@@ -63,7 +105,6 @@
     <script type="text/javascript" src="src/turn.js"></script>
     <script type="text/javascript" src="src/game.js"></script>
     <script type="text/javascript" src="src/index.js"></script>
-    
   </body>
 
 </html>
