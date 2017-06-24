@@ -10,7 +10,6 @@ class Turn {
       this.player.points += 1
       this.player.settlements.push(settlement)
       this.player.settlementCount -= 1
-      console.log('placed')
       return true
     } else {
       return false
@@ -21,6 +20,14 @@ class Turn {
     if (this.player.roadCount > 0 || this.player.countRoads() === 0 ) {
       this.player.roadCount -= 1
       this.player.roads.push(road)
+      return true
+    } else {
+      return false
+    }
+  }
+
+  placeCity(settlement){
+    if (this.player.cityCount > 0) {
       return true
     } else {
       return false
@@ -46,6 +53,16 @@ class Turn {
       this.player.settlementCount += 1
     } else {
       alert("You don't have enough resources to by a settlement!")
+    }
+  }
+
+  buyCity() {
+    if (this.player.resources.ores >= 3 && this.player.resources.grains >= 2) {
+      this.player.resources.grains -= 2
+      this.player.resources.ores -= 3
+      this.player.cityCount += 1
+    } else {
+      alert("You don't have enough resources to by a city!")
     }
   }
 

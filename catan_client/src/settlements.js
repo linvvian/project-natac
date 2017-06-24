@@ -43,6 +43,14 @@ class SettlementList {
     context.fillRect(element.left-3 , element.top-3, element.width+5, element.height+5)
   }
 
+  renderCity(element, color){
+    let context = document.getElementById('hexmap').getContext('2d')
+    context.fillStyle = color
+    context.fillRect(element.left-3+element.width+5, element.top-3+10, element.width-8, element.height-5 )
+    element.className = 'city'
+    console.log('in here')
+  }
+
   roundRect(ctx, x, y, width, height, radius, fill, stroke) {
     if (typeof stroke == 'undefined') {
       stroke = true;

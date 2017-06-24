@@ -59,10 +59,13 @@ class Game {
       player.settlements.forEach(function(settlement) {
         for (let i = 0; i < tilesArr.length; i++) {
           let tile = tilesArr[i]
-          console.log(settlement)
           settlement.tiles_id.forEach(function(e) {
             if (e === tile[1].id) {
               player.procureResource(tile[0])
+              if (settlement.className === 'city') {
+                player.procureResource(tile[0])
+                console.log('citah')
+              }
             }
           })
         }
@@ -156,21 +159,59 @@ class Game {
           picked = element
         }} )
     }
+    if (!picked) {
+      this.turn.player.settlements.forEach(function(element) {
+        if (y > element.top && y < element.top + element.height
+        && x > element.left && x < element.left + element.width) {
+          picked = element
+        }
+      })
+    }
 
     return picked
   }
 
-  settlementPosition(chosen){
-    let result = true
-    let playerSetIDs = this.turn.player.settlements.map(set => { return set.id })
-    chosen.roads.forEach(function(road){
-      road.settlements_id.forEach((id) => {
-        if ($.inArray(id, playerSetIDs) !== -1) {
-          result = false
-        }
-      })
+  buildCity(chosen){
+    let result = false
+    this.turn.player.settlements.forEach((settlement) => {
+      if(settlement === chosen){
+        result = true
+      }
     })
     return result
+  }
+
+  settlementPosition(chosen){
+    let result1 = true
+    let result2 = false
+    let settlementsIDs = []
+    let roadIDs = this.turn.player.roads.map(road => road.id)
+    this.players.forEach((player) => {
+      player.settlements.forEach((settlement) => {
+        settlementsIDs.push(settlement.id)
+      })
+    })
+
+    chosen.roads.forEach(function(road){
+      road.settlements_id.forEach((id) => {
+        if ($.inArray(id, settlementsIDs) !== -1) {
+          result1 = false
+        }
+      })
+      if (this.turnCount > this.players.length) {
+        if ($.inArray(road.id, roadIDs) !== -1) {
+          result2 = true
+        }
+      } else {
+        result2 = true
+      }
+    }, this)
+
+    if (result1 && result2) {
+      return true
+    } else {
+      return false
+    }
   }
 
   roadPosition(chosen){
@@ -217,6 +258,10 @@ class Game {
       if (this.settlementPosition(chosen) && this.turn.placeSettlement(chosen)) {
         this.claimSettlement(chosen)
         this.settlementClass.renderMySettlement(chosen, this.turn.player.color)
+      } else if (this.buildCity(chosen) && this.turn.placeCity(chosen)) {
+        this.settlementClass.renderCity(chosen, this.turn.player.color)
+        this.turn.player.cityCount -= 1
+        this.turn.player.points += 1
       }
     } else if (chosen.className === 'road'){
       if (this.roadPosition(chosen) && this.turn.placeRoad(chosen)) {
@@ -316,6 +361,10 @@ class Game {
         turn.buyRoad()
         this.renderPlayer()
         break;
+      case 'buyCityBtn':
+        turn.buyCity()
+        this.renderPlayer()
+        break;
       case 'endTurnBtn':
         this.endTurn()
         break;
@@ -331,7 +380,7 @@ class Game {
   winGame() {
     var playerName = null
     this.players.forEach(player => {
-      if (player.points >= 3) {
+      if (player.points >= 5) {
         playerName = player.name
       }
     })
@@ -386,12 +435,12 @@ class Game {
   }
 
   submitTrade(){
-    if (this.trader) {
-      let indexTrader = this.players.indexOf(this.trader)
-      let indexTradee = this.players.indexOf(this.tradee)
-      let traderResource = document.querySelector(`#player${indexTrader+1}-tradeR`).value
-      let tradeeResource = document.querySelector(`#player${indexTradee+1}-tradeR`).value
+    let indexTrader = this.players.indexOf(this.trader)
+    let indexTradee = this.players.indexOf(this.tradee)
+    let traderResource = document.querySelector(`#player${indexTrader+1}-tradeR`).value
+    let tradeeResource = document.querySelector(`#player${indexTradee+1}-tradeR`).value
 
+    if (this.trader) {
       this.trader.resources[traderResource] -= 1
       this.tradee.resources[tradeeResource] -= 1
       this.tradee.resources[traderResource] += 1
@@ -399,9 +448,10 @@ class Game {
       this.renderPlayer()
     }
 
-    document.querySelector(`#player${indexTrader+1}-tradeR`).style.visibility = "hidden"
-    document.querySelector(`#player${indexTradee+1}-tradeR`).style.visibility = "hidden"
-    document.querySelector(`#player${indexTradee+1}-tradeBtn`).style.visibility = "hidden"
+    document.querySelector(`#player${indexTrader+1}-tradeR`).style.visibility = 'hidden'
+    document.querySelector(`#player${indexTradee+1}-tradeR`).style.visibility = 'hidden'
+    document.querySelector(`#player${indexTradee+1}-tradeBtn`).style.visibility = 'hidden'
+    document.querySelector('#submitTradeBtn').style.visibility = 'hidden'
   }
 
   tradeWith(i){
