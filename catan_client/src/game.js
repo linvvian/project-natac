@@ -3,7 +3,7 @@ class Game {
     this.turnCount = 1
     this.roll
     this.adapter = new ApiAdapter()
-    this.players = [new Player('#FF0000'), new Player('#0085FF')]
+    this.players = [new Player('#FF0000', 'Player 1'), new Player('#0085FF', 'Player 2')]
     this.gameboard = new Gameboard()
     this.tileClass = new TileList()
     this.tileClass.renderTiles()
@@ -23,9 +23,15 @@ class Game {
     this.playerTurnColor()
   }
 
+  numberOfPlayers(){
+    return this.players.length
+  }
+
   rollDice(){
-    if (this.turnCount <= this.players.length) {
-      alert ("Place your settlements")
+    if (this.turnCount < this.numberOfPlayers()*2-1) {
+      alert ("Place your settlements/roads")
+    } else if (this.currentPlayer().settlementCount !== 0 || this.currentPlayer().roadCount !== 0) {
+      alert("Place your settlements/roads")
     } else if (this.roll) {
       alert ("You already rolled the dice this turn")
     } else {
@@ -105,19 +111,22 @@ class Game {
   }
 
   addPlayer(i){
-    let color
-    if (this.players.length === 2) {
-      color = '#FF9900'
-    } else {
-      color = '#9600FF'
+    if (this.turnCount ===1) {
+      let color
+      if (this.numberOfPlayers() === 2) {
+        color = '#FF9900'
+      } else {
+        color = '#9600FF'
+      }
+      let name = document.querySelector(`#player${i}-name`).value
+      if( this.players[i-1] && name ) {
+        this.players[i-1].name = name
+      } else {
+        let p = new Player(color, name)
+        this.players.push(p)
+        p.appendPlayerCorner(i)
+      }
     }
-    let name = document.querySelector(`#player${i}-name`).value
-    if( this.players[i-1] && name ) {
-      this.players[i-1].name = name
-    } else {
-      this.players.push(new Player(color, name))
-    }
-    console.log(this.players)
   }
 
   addResources(i){
@@ -198,7 +207,7 @@ class Game {
           result1 = false
         }
       })
-      if (this.turnCount > this.players.length) {
+      if (this.turnCount > this.numberOfPlayers()*2-1) {
         if ($.inArray(road.id, roadIDs) !== -1) {
           result2 = true
         }
@@ -230,7 +239,6 @@ class Game {
         })
       }
     })
-    console.log(result)
     return result
   }
 
@@ -273,29 +281,49 @@ class Game {
   }
 
   currentPlayer(){
-    if (this.turnCount % this.players.length === 1){
+    if (this.turnCount % this.numberOfPlayers() === 1){
+      this.nextPlayer = this.players[1]
         return this.players[0]
-    } else if (this.turnCount % this.players.length === 2){
+    } else if (this.turnCount % this.numberOfPlayers() === 2){
+      this.nextPlayer = this.players[2]
         return this.players[1]
-    } else if (this.turnCount % this.players.length === 3){
+    } else if (this.turnCount % this.numberOfPlayers() === 3){
+      this.nextPlayer = this.players[3]
         return this.players[2]
     } else {
-        return this.players[this.players.length-1]
+      this.nextPlayer = this.players[0]
+        return this.players[this.numberOfPlayers()-1]
+    }
+  }
+
+  startGameSetup(){
+    if (this.turnCount < this.numberOfPlayers()*2 && this.currentPlayer().settlementCount === 0) {
+      if (this.currentPlayer().countSettlements() === 0){
+        this.currentPlayer().settlementCount += 1
+        this.currentPlayer().roadCount += 1
+        if (this.turnCount === this.numberOfPlayers()){
+          this.currentPlayer().settlementCount += 1
+          this.currentPlayer().roadCount += 1
+        }
+      } else if (this.turnCount > this.numberOfPlayers() && this.currentPlayer().countSettlements() === 1){
+        this.currentPlayer().settlementCount += 1
+        this.currentPlayer().roadCount += 1
+      }
     }
   }
 
   startTurn(){
     let player = this.currentPlayer()
     this.turn = new Turn(player)
-      return this.turn
+    return this.turn
   }
 
   eventsCheck(){
     event.preventDefault()
     let player = this.currentPlayer()
-    console.log(player)
-    let turn = this.startTurn()
     let target = event.target.id
+    let turn = this.startTurn()
+    this.startGameSetup()
 
     // get resource
     switch (target) {
@@ -340,7 +368,7 @@ class Game {
       case 'player3-tradeBtn':
         this.tradeWith(3)
         break;
-      case 'player4-trade':
+      case 'player4-tradeBtn':
         this.tradeWith(4)
         break;
       case 'tradeBtn':
@@ -366,7 +394,7 @@ class Game {
         this.renderPlayer()
         break;
       case 'endTurnBtn':
-        this.endTurn()
+        this.endTurn(player)
         break;
       case 'hexmap':
         this.getRoadOrSettlement.call(this, event, this.settlementClass.settlements, this.roadClass.roads)
@@ -387,10 +415,9 @@ class Game {
     return playerName
   }
 
-  endTurn() {
-    if (this.turn.player.settlementCount !== 0 || this.turn.player.roadCount !== 0) {
-      alert("Place your settlements/roads")
-    } else if (this.roll === null && this.turnCount > this.players.length) {
+  endTurn(player) {
+    this.warnPlaceSettlementRoads()
+    if (this.roll === null && this.turnCount > this.numberOfPlayers()*2-1) {
       alert("Roll first")
     } else {
       this.saveState(this)
@@ -407,6 +434,20 @@ class Game {
     this.diceRoll.innerHTML = ""
   }
 
+  warnPlaceSettlementRoads(){
+    if (this.turn.player.settlementCount !== 0 || this.turn.player.roadCount !== 0) {
+      if (this.turnCount < this.numberOfPlayers()*2) {
+        if (this.currentPlayer().countSettlements() < 1 || this.currentPlayer().countRoads() < 1){
+          alert("Place your first settlement/road")
+        } else {
+          alert("Place your second settlement/road")
+        }
+      } else {
+        alert("Place your settlements/roads")
+      }
+    }
+  }
+
   saveState(gameStateObj) {
     if (gameStateObj.turnCount === 1) {
       this.adapter.saveTilesState(gameStateObj)
@@ -418,8 +459,14 @@ class Game {
   }
 
   renderTurnCount(){
+    let player
+    if (this.turnCount === 1) {
+      player = this.currentPlayer()
+    } else {
+      player = this.nextPlayer
+    }
     const div = document.querySelector('.turnCount-container')
-    div.innerHTML = `<h2>Turn: ${this.turnCount}</h2>`
+    div.innerHTML = `<h2>${player.name}'s Turn</h2>`.fontcolor(`${player.color}`)
   }
 
   playerTurnColor(){
@@ -472,7 +519,7 @@ class Game {
 
   initiateTrade(){
     let resourceCount = Object.values(this.turn.player.resources).reduce((a, b) => a + b)
-    if(this.turnCount > this.players.length && resourceCount > 0) {
+    if(this.turnCount > this.numberOfPlayers() && resourceCount > 0) {
       document.querySelector('#submitTradeBtn').style.visibility = "visible"
       let trader = this.turn.player
       this.players.forEach((player, index) => {

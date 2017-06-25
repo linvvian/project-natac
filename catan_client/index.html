@@ -11,19 +11,20 @@
     <div class="game">
       <div class="game-header">
         <div class="to-build">To Build a Road: 1 Brick, 1 Lumber<br>
-        To Build a Settlement: 1 Brick, 1 Wool, 1 Grain, 1 Lumber</div>
+          To Build a Settlement: 1 Brick, 1 Wool, 1 Grain, 1 Lumber<br>
+          To Build a City: 3 Ores, 2 Grains</div>
         <div class='turnCount-container'></div>
         <div class='roll'></div>
         <br>
         <div class='button-container'>
           <button id='rollDice'>Roll Dice</button>
+          <button id='endTurnBtn'>End Turn</button>
+          <br>
           <button id='buySettlementBtn'>Buy Settlement</button>
           <button id='buyRoadBtn'>Buy Road</button>
           <button id='buyCityBtn'>Buy City</button>
           <button id="tradeBtn">Start Trade</button>
           <button id="submitTradeBtn">Submit Trade</button>
-          <br>
-          <button id='endTurnBtn'>End Turn</button>
         </div>
       </div>
 
@@ -63,36 +64,10 @@
         </div>
 
         <div id='player3-corner' class='players'>
-          <div class='player-info' id='player3-info'></div>
-          <button class="player-resBtn" class="ui toggle button active" id="player3-resources">P3 Resources</button>
-          <div id='player3-tag' class='player-tag'></div>
-          <div class="player-trade" id="player3-trade">
-            <select class="player-resources" id="player3-tradeR">
-              <option value="bricks">Bricks</option>
-              <option value="lumbers">Lumbers</option>
-              <option value="wools">Wools</option>
-              <option value="ores">Ores</option>
-              <option value="grains">Grains</option>
-            </select>
-            <button class="trade_with" id="player3-tradeBtn">Trade With</button>
-          </div>
           <form><input type="text" id="player3-name"><input type="submit" id="player3-submit"></form>
         </div>
 
         <div id='player4-corner' class='players'>
-          <div class='player-info' id='player4-info'></div>
-          <button class="player-resBtn" class="ui toggle button active" id="player4-resources">P4 Resources</button>
-          <div id='player4-tag' class='player-tag'></div>
-          <div class="player-trade" id="player4-trade">
-            <select class="player-resources" id="player4-tradeR">
-              <option value="bricks">Bricks</option>
-              <option value="lumbers">Lumbers</option>
-              <option value="wools">Wools</option>
-              <option value="ores">Ores</option>
-              <option value="grains">Grains</option>
-            </select>
-            <button class="trade_with" id="player4-tradeBtn">Trade With</button>
-          </div>
           <form><input type="text" id="player4-name"><input type="submit" id="player4-submit"></form>
         </div>
 

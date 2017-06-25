@@ -18,7 +18,7 @@ canvas {
 .hexmap {
   position: relative;
   text-align: center;
-  top: 220px;
+  top: 230px;
   margin: 0 auto;
 }
 
@@ -64,7 +64,7 @@ canvas {
 
 .roll {
   text-align: center;
-  height: 50px;
+  height: 30px;
 }
 
 .button-container {
