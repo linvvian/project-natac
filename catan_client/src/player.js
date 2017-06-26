@@ -55,17 +55,26 @@ class Player {
     $(`#player${i}-corner`).prepend(this.renderPlayerCorner(i))
   }
 
+  renderAvailabeResourcesToTrade(i){
+    let resources = this.resources
+    function upCaseFirst(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    let toTrade = Object.keys(resources).map(function(r){
+      if (resources[r] !== 0){
+        return `<option value="${r}">${upCaseFirst(r)}</option>`
+      }
+    }).join('')
+
+    document.querySelector(`#player${i}-tradeR`).innerHTML = toTrade
+  }
+
   renderPlayerCorner(i){
     return `<div class='player-info' id='player${i}-info'></div>
     <button class="player-resBtn" class="ui toggle button active" id="player${i}-resources">P${i} Resources</button>
     <div id='player${i}-tag' class='player-tag'></div>
     <div class="player-trade" id="player${i}-trade">
       <select class="player-resources" id="player${i}-tradeR">
-        <option value="bricks">Bricks</option>
-        <option value="lumbers">Lumbers</option>
-        <option value="wools">Wools</option>
-        <option value="ores">Ores</option>
-        <option value="grains">Grains</option>
       </select>
       <button class="trade_with" id="player${i}-tradeBtn">Trade With</button>
     </div>`

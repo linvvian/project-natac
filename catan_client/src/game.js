@@ -417,7 +417,7 @@ class Game {
 
   endTurn(player) {
     this.warnPlaceSettlementRoads()
-    if (this.roll === null && this.turnCount > this.numberOfPlayers()*2-1) {
+    if (this.roll === null && this.turnCount >= this.numberOfPlayers()*2-1) {
       alert("Roll first")
     } else {
       this.saveState(this)
@@ -428,6 +428,7 @@ class Game {
         this.turnCount ++
         this.renderTurnCount()
         this.playerTurnColor()
+        this.clearTradeFloor()
       }
     }
     this.roll = null
@@ -495,10 +496,7 @@ class Game {
       this.renderPlayer()
     }
 
-    document.querySelector(`#player${indexTrader+1}-tradeR`).style.visibility = 'hidden'
-    document.querySelector(`#player${indexTradee+1}-tradeR`).style.visibility = 'hidden'
-    document.querySelector(`#player${indexTradee+1}-tradeBtn`).style.visibility = 'hidden'
-    document.querySelector('#submitTradeBtn').style.visibility = 'hidden'
+    this.clearTradeFloor()
   }
 
   tradeWith(i){
@@ -510,11 +508,22 @@ class Game {
       if (player === this.trader || player === this.tradee) {
         let tradeResources = document.querySelector(`#player${index+1}-tradeR`)
         tradeResources.style.visibility = "visible"
+        player.renderAvailabeResourcesToTrade(index+1)
       } else {
         let playerBtn = document.querySelector(`#player${index+1}-tradeBtn`)
         playerBtn.style.visibility = "hidden"
       }
     }, this)
+  }
+
+  clearTradeFloor(){
+    document.querySelector('#submitTradeBtn').style.visibility = "hidden"
+    this.players.forEach((player, index) => {
+      let playerBtn = document.querySelector(`#player${index+1}-tradeBtn`)
+      playerBtn.style.visibility = "hidden"
+      let tradeResources = document.querySelector(`#player${index+1}-tradeR`)
+      tradeResources.style.visibility = "hidden"
+    })
   }
 
   initiateTrade(){
