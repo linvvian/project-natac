@@ -388,7 +388,7 @@ class Game {
   }
 
   endTurn() {
-    if (this.turn.player.settlementCount !== 0 || this.turn.player.roadCount !== 0) {
+    if (this.turn.player.settlementCount !== 0 || this.turn.player.roadCount !== 0 && this.turnCount < this.players.length) {
       alert("Place your settlements/roads")
     } else if (this.roll === null && this.turnCount > this.players.length) {
       alert("Roll first")
